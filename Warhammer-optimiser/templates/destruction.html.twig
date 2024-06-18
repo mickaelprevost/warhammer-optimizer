@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for classe in classes %}
+       <a href="{{ path('app_classe', { id : classe.id })}}"> {{ classe.name }} </a>
+    {% endfor %}
+{% endblock %}

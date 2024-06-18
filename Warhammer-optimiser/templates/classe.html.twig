@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<form action="" method="post">
+<input type="text" name="nom" id="nom" placeholder="nom du template" style="margin-top: 2rem;">
+  {% for type in types %}
+    <p> {{type.name}}
+    {% for item in gear %}
+      {% for part in item %}
+        {% if part.type.id is same as type.id %}
+        <select name="items[]" id="" required>
+          <option value="">
+            <p> please select an item </p>
+          </option>
+          <option value="{{part.name}}">
+            {{ part.name }} 
+          </option>
+        </select>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endfor %}
+  <div>
+  <input type="submit"></input>
+  </div>
+</form>
+
+
+{% endblock %}

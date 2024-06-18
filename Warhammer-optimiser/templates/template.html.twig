@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p> {{name.nom}}
+
+<div style="display:flex; flex-direction:column;">
+    <h2> Liste des items sélectionnés </h2>
+    {% for item in liste %}
+        <div>
+            {{item.name}}
+            {{item.intel}}
+            {{item.strenght}}
+            {{item.wound}}
+            {{item.initiative}}
+            {{item.toughness}}
+        </div>
+    {% endfor %}
+</div>
+    <p> total armor = {{armor}}</p>
+    <p> total resist = {{resist}}</p>
+    <p> total magicpower = {{magicpower}}</p>
+    <p> total ap = {{ap}}</p>
+    <p> total crit heal = {{critheal}}</p>
+    <p> total melee crit damage = {{meleecritdamage}}</p>
+    <p> total intel = {{intel}}</p>
+    <p> total wound = {{wound}}</p>
+    <p> total initiative = {{initiative}}</p>
+    <p> total toughness = {{toughness}}</p>
+    <p> total strenght = {{strenght}}</p>
+    <p> total weapon skill = {{weaponskill}}</p>
+    <p> total wisdom = {{wisdom}}</p>
+{% endblock %}
