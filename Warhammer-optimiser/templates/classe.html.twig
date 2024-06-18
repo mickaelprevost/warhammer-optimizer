@@ -1,30 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<h1 style="text-align:center;"> Here is the template creation for the {{classe.name}}</h1>
+<h2 style="text-align:center;"> select all the items for your build and validate to see the template stats </h2>
+<div style="display:flex; flex-direction:column; align-items:center;"> 
 <form action="" method="post">
-<input type="text" name="nom" id="nom" placeholder="nom du template" style="margin-top: 2rem;">
+<input style="margin-top: 2rem;
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;"type="text" name="nom" id="nom" placeholder="name your template" style="margin-top: 2rem;">
   {% for type in types %}
-    <p> {{type.name}}
+    <p style="font-size:20px;"> {{type.name}}
+    <select style="font-size:20px;" name="items[]" id="" required>
+    <option value="">
+      <p style="font-size:20px;"> please select an item </p>
+    </option>
     {% for item in gear %}
       {% for part in item %}
         {% if part.type.id is same as type.id %}
-        <select name="items[]" id="" required>
-          <option value="">
-            <p> please select an item </p>
-          </option>
-          <option value="{{part.name}}">
-            {{ part.name }} 
-          </option>
-        </select>
+          {% if part.classe is same as null or part.classe.id is same as classeId %}
+              <option style="font-size:20px;" value="{{part.name}}">
+                {{ part.name }} 
+              </option>
+          {% endif %}
         {% endif %}
       {% endfor %}
     {% endfor %}
+    </select>
   {% endfor %}
-  <div>
-  <input type="submit"></input>
-  </div>
+  <div><input style="width: 100px;height: 40px;border-radius: 15px;" type="submit"></input></div>
 </form>
-
-
+</div>
 {% endblock %}

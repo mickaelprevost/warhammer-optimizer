@@ -55,9 +55,11 @@ class HomeController extends AbstractController
 
     #[Route('/classe/{id<\d+>}', name: 'app_classe')]
     public function classe($id, ItemsRepository $itemsRepository, ItemstypeRepository $itemstypeRepository, 
-    Request $request, EntityManagerInterface $entityManager): Response
+    ClasseRepository $classeRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $gear = $itemsRepository->findBy(['classe' => $id]);
+        $classe = $classeRepository->findOneBy(['id' => $id]);
+        $classeId = $classe->getId();
         $types = $itemstypeRepository->findAll();
         $liste = [];
         
@@ -87,9 +89,12 @@ class HomeController extends AbstractController
                 $entityManager->persist($TemplateListe);
             }
             $entityManager->flush();
+            return $this->redirectToRoute('app_template', ['id' => $template->getId()]);
         }
          
         return $this->render('classe.html.twig', [
+            'classe' => $classe,
+            'classeId' => $classeId,
             'gear' => $liste,
             'types' => $types
         ]);

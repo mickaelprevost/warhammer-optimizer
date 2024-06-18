@@ -2,8 +2,38 @@
 
 {% block body %}
 
-<a href="{{ path('app_order')}}">{{ order.name }}</a>
-<a href="{{ path('app_destruction')}}">{{ destruction.name }}</a>
+<div style="width: 100%; height:50vh; display:flex;justify-content:center; align-items:center; gap: 5rem;">
+    <div style="width: 150px;
+    height: 110px;
+    display: flex;
+    background-color: blue;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;">
+        <a style="font-size: x-large;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    letter-spacing: 2px;" 
+    href="{{ path('app_order')}}">{{ order.name }}</a>
+    </div>
+    <div style="width: 150px;
+    height: 110px;
+    display: flex;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;">
+        <a style="font-size: x-large;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    letter-spacing: 2px;"
+    href="{{ path('app_destruction')}}">{{ destruction.name }}</a>
+    </div>
+</div>
 
 
 {% endblock %}

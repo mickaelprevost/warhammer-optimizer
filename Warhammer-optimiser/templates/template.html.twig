@@ -1,32 +1,100 @@
-{% extends 'base.html.twig' %}
 
 {% block body %}
-    <p> {{name.nom}}
 
-<div style="display:flex; flex-direction:column;">
-    <h2> Liste des items sélectionnés </h2>
-    {% for item in liste %}
-        <div>
-            {{item.name}}
-            {{item.intel}}
-            {{item.strenght}}
-            {{item.wound}}
-            {{item.initiative}}
-            {{item.toughness}}
+    <header style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+		<nav style="display:flex; justify-content:center; align-items:center; border:1px solid black; background-color:black; width:100%; height: 40px; gap:2rem;"> 
+		    <a style="font-size: 20px; color:white; text-decoration:none;" href="{{ path('app_home')}}">Accueil</a>
+			<a style="font-size: 20px; color:white; text-decoration:none;" href="#">Connexion</a>
+			<a style="font-size: 20px; color:white; text-decoration:none;" href="#">Inscription</a>
+		</nav>
+	</header>
+
+    <h2 style="text-align:center"> Résults for {{name.nom}} </h2>
+
+    <div>
+        <h2 style="text-align:center;"> Liste of selected items</h2>
+        <div style="display:flex; justify-content:center; gap:1rem;">
+            {% for item in liste %}
+                <img style="width:150px; height: 240px;" src="{{asset('asset/images/items/' ~ item.picture)}}">
+            {% endfor %}
         </div>
-    {% endfor %}
-</div>
-    <p> total armor = {{armor}}</p>
-    <p> total resist = {{resist}}</p>
-    <p> total magicpower = {{magicpower}}</p>
-    <p> total ap = {{ap}}</p>
-    <p> total crit heal = {{critheal}}</p>
-    <p> total melee crit damage = {{meleecritdamage}}</p>
-    <p> total intel = {{intel}}</p>
-    <p> total wound = {{wound}}</p>
-    <p> total initiative = {{initiative}}</p>
-    <p> total toughness = {{toughness}}</p>
-    <p> total strenght = {{strenght}}</p>
-    <p> total weapon skill = {{weaponskill}}</p>
-    <p> total wisdom = {{wisdom}}</p>
+    </div>
+
+    <div style="display:flex; justify-content:center; flex-wrap: wrap; gap: 2rem;">
+        <div>
+            <h2> Avatar base stats (level 40)</h2>
+            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 1px solid black;">
+                <p> armor = </p>
+                <p> resist = </p>
+                <p> magicpower = </p>
+                <p> ap = </p>
+                <p> crit heal = </p>
+                <p> melee crit damage = </p>
+                <p> intel = </p>
+                <p> wound = </p>
+                <p> initiative = </p>
+                <p> toughness = </p>
+                <p> strenght = </p>
+                <p> weapon skill = </p>
+                <p> wisdom = </p>
+            </div>
+        </div>
+
+        <div>
+            <h2> passive stats </h2>
+            <div style="padding: 1rem;display:grid; grid-template-columns: 200px 200px 200px 200px; border: 1px solid black;">
+                <p> armor = </p>
+                <p> resist = </p>
+                <p> magicpower = </p>
+                <p> ap = </p>
+                <p> crit heal = </p>
+                <p> melee crit damage = </p>
+                <p> intel = </p>
+                <p> wound = </p>
+                <p> initiative = </p>
+                <p> toughness = </p>
+                <p> strenght = </p>
+                <p> weapon skill = </p>
+                <p> wisdom = </p>
+            </div>
+        </div>
+
+        <div>
+            <h2> gear stats </h2>
+            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 1px solid black;">
+                <p> armor = </p>
+                <p> resist = </p>
+                <p> magicpower = </p>
+                <p> ap = </p>
+                <p> crit heal = </p>
+                <p> melee crit damage = </p>
+                <p> intel = </p>
+                <p> wound = </p>
+                <p> initiative = </p>
+                <p> toughness = </p>
+                <p> strenght = </p>
+                <p> weapon skill = </p>
+                <p> wisdom = </p>
+            </div>
+        </div>
+
+        <div>
+            <h2> Total stats </h2>
+            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 1px solid black;">
+                <p> total armor = {{armor}}</p>
+                <p> total resist = {{resist}}</p>
+                <p> total magicpower = {{magicpower}}</p>
+                <p> total ap = {{ap}}</p>
+                <p> total crit heal = {{critheal}}</p>
+                <p> total melee crit damage = {{meleecritdamage}}</p>
+                <p> total intel = {{intel}}</p>
+                <p> total wound = {{wound}}</p>
+                <p> total initiative = {{initiative}}</p>
+                <p> total toughness = {{toughness}}</p>
+                <p> total strenght = {{strenght}}</p>
+                <p> total weapon skill = {{weaponskill}}</p>
+                <p> total wisdom = {{wisdom}}</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

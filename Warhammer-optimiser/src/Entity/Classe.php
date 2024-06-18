@@ -27,6 +27,9 @@ class Classe
     #[ORM\Column(length: 255)]
     private ?string $Faction = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -87,6 +90,18 @@ class Classe
     public function setFaction(string $Faction): static
     {
         $this->Faction = $Faction;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): static
+    {
+        $this->picture = $picture;
 
         return $this;
     }
