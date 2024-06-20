@@ -84,9 +84,16 @@ class Items
     #[ORM\Column(nullable: true)]
     private ?int $disrupt = null;
 
+    /**
+     * @var Collection<int, ItemsItemsType>
+     */
+    #[ORM\OneToMany(targetEntity: ItemsItemsType::class, mappedBy: 'item')]
+    private Collection $itemsItemsTypes;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
+        $this->itemsItemsTypes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -372,6 +379,36 @@ class Items
     public function setDisrupt(?int $disrupt): static
     {
         $this->disrupt = $disrupt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ItemsItemsType>
+     */
+    public function getItemsItemsTypes(): Collection
+    {
+        return $this->itemsItemsTypes;
+    }
+
+    public function addItemsItemsType(ItemsItemsType $itemsItemsType): static
+    {
+        if (!$this->itemsItemsTypes->contains($itemsItemsType)) {
+            $this->itemsItemsTypes->add($itemsItemsType);
+            $itemsItemsType->setItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemsItemsType(ItemsItemsType $itemsItemsType): static
+    {
+        if ($this->itemsItemsTypes->removeElement($itemsItemsType)) {
+            // set the owning side to null (unless already changed)
+            if ($itemsItemsType->getItem() === $this) {
+                $itemsItemsType->setItem(null);
+            }
+        }
 
         return $this;
     }

@@ -10,6 +10,7 @@ use App\Repository\SetbonusesRepository;
 use App\Repository\SetsRepository;
 use App\Repository\TemplateRepository;
 use App\Repository\TemplateListeRepository;
+use App\Repository\ItemsItemsTypeRepository;
 use App\Entity\Items;
 use App\Entity\Template;
 use App\Entity\TemplateListe;
@@ -55,7 +56,8 @@ class HomeController extends AbstractController
 
     #[Route('/classe/{id<\d+>}', name: 'app_classe')]
     public function classe($id, ItemsRepository $itemsRepository, ItemstypeRepository $itemstypeRepository, 
-    ClasseRepository $classeRepository, Request $request, EntityManagerInterface $entityManager): Response
+    ClasseRepository $classeRepository, Request $request, ItemsItemsTypeRepository $itemsitemstypeRepository, 
+    EntityManagerInterface $entityManager): Response
     {
         $gear = $itemsRepository->findBy(['classe' => $id]);
         $classe = $classeRepository->findOneBy(['id' => $id]);
@@ -65,7 +67,7 @@ class HomeController extends AbstractController
         
         foreach ($types as $id => $type){
             $id = $type->getId();
-            $liste[$id] = $itemsRepository->findBy(['type' => $id]);
+            $liste[$id] = $itemsitemstypeRepository->findBy(['type' => $id]);
         }
 
         $Liste = [];
@@ -106,6 +108,7 @@ class HomeController extends AbstractController
     {
         $name = $templateRepository->findOneBy(['id' => $id]);
         $liste = $templateListeRepository->findBy(['template' => $id]);
+
         $object=[];
         $totalIntel = "0";
         $totalWound = "0";

@@ -7,7 +7,9 @@
         <h2 style="text-align:center;"> Liste of selected items</h2>
         <div style="display:flex; justify-content:center; gap:1.5rem; margin-bottom:2rem;">
             {% for item in liste %}
+                {% if item.picture is not same as null %}
                 <img class="gearpics" src="{{asset('asset/images/items/' ~ item.classe.name ~ '/' ~ item.picture)}}">
+                {% endif %}
             {% endfor %}
         </div>
     </div>
