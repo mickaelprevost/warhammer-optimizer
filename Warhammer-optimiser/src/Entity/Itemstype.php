@@ -24,9 +24,16 @@ class Itemstype
     #[ORM\OneToMany(targetEntity: Items::class, mappedBy: 'type')]
     private Collection $items;
 
+    /**
+     * @var Collection<int, ItemsItemsType>
+     */
+    #[ORM\OneToMany(targetEntity: ItemsItemsType::class, mappedBy: 'type')]
+    private Collection $itemsItemsTypes;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->itemsItemsTypes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,6 +77,36 @@ class Itemstype
             // set the owning side to null (unless already changed)
             if ($item->getType() === $this) {
                 $item->setType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ItemsItemsType>
+     */
+    public function getItemsItemsTypes(): Collection
+    {
+        return $this->itemsItemsTypes;
+    }
+
+    public function addItemsItemsType(ItemsItemsType $itemsItemsType): static
+    {
+        if (!$this->itemsItemsTypes->contains($itemsItemsType)) {
+            $this->itemsItemsTypes->add($itemsItemsType);
+            $itemsItemsType->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemsItemsType(ItemsItemsType $itemsItemsType): static
+    {
+        if ($this->itemsItemsTypes->removeElement($itemsItemsType)) {
+            // set the owning side to null (unless already changed)
+            if ($itemsItemsType->getType() === $this) {
+                $itemsItemsType->setType(null);
             }
         }
 

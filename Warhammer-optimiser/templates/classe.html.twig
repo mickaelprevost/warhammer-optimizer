@@ -23,10 +23,10 @@
     </option>
     {% for item in gear %}
       {% for part in item %}
-        {% if part.type.id is same as type.id %}
-          {% if part.classe is same as null or part.classe.id is same as classeId %}
-              <option style="font-size:20px;" value="{{part.name}}">
-                {{ part.name }} 
+        {% if part.type.id is same as type.id %}   
+          {% if part.item.classe is same as null or part.item.classe.id is same as classeId %}
+              <option style="font-size:20px;" value="{{part.item.name}}">
+                {{ part.item.name }} 
               </option>
           {% endif %}
         {% endif %}
