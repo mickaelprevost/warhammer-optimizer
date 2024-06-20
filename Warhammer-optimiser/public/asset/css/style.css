@@ -1,3 +1,22 @@
 .order-liste img:hover, .destro-liste img:hover {
     transform: scale(0.9);
 }
+
+
+.gearpics {
+    width:140px; 
+    height: 210px;
+}
+
+.gearpics:hover{
+    transform: scale(2.4);
+    cursor: pointer;
+}
+
+.faction-select {
+    text-decoration:none;
+}
+
+.faction-select:hover {
+    transform: scale(1.2);
+}

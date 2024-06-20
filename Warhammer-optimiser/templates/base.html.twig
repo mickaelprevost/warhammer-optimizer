@@ -12,19 +12,12 @@
 	</head>
 	
 	<body>
-			<header style="display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;">
-					
-					<nav style="display:flex; justify-content:center; align-items:center; border:1px solid black; background-color:black; width:100%; height: 40px; gap:2rem;"> 
+			<header style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+				<nav style="display:flex; justify-content:center; align-items:center; border:1px solid black; background-color:black; width:100%; height: 40px; gap:2rem;"> 
 					<a style="font-size: 20px; color:white; text-decoration:none;" href="{{ path('app_home')}}">Accueil</a>
-						<a style="font-size: 20px; color:white; text-decoration:none;" href="#">Connexion</a>
-						<a style="font-size: 20px; color:white; text-decoration:none;" href="#">Inscription</a>
-					</nav>
-					<div style="display:flex; justify-content:center; margin-top:3rem; width:450px; height:220px;">
-					<img style="width:100%; height:100%;"src="asset/images/logo.jpeg" alt="">
-					</div>
+					<a style="font-size: 20px; color:white; text-decoration:none;" href="#">Connexion</a>
+					<a style="font-size: 20px; color:white; text-decoration:none;" href="#">Inscription</a>
+				</nav>
 			</header>
 
 			{% block body %}{% endblock %}

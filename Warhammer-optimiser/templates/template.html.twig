@@ -1,35 +1,30 @@
+{% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <header style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-		<nav style="display:flex; justify-content:center; align-items:center; border:1px solid black; background-color:black; width:100%; height: 40px; gap:2rem;"> 
-		    <a style="font-size: 20px; color:white; text-decoration:none;" href="{{ path('app_home')}}">Accueil</a>
-			<a style="font-size: 20px; color:white; text-decoration:none;" href="#">Connexion</a>
-			<a style="font-size: 20px; color:white; text-decoration:none;" href="#">Inscription</a>
-		</nav>
-	</header>
-
     <h2 style="text-align:center"> Résults for {{name.nom}} </h2>
 
     <div>
         <h2 style="text-align:center;"> Liste of selected items</h2>
-        <div style="display:flex; justify-content:center; gap:1rem;">
+        <div style="display:flex; justify-content:center; gap:1.5rem; margin-bottom:2rem;">
             {% for item in liste %}
-                <img style="width:150px; height: 240px;" src="{{asset('asset/images/items/' ~ item.picture)}}">
+                <img class="gearpics" src="{{asset('asset/images/items/' ~ item.classe.name ~ '/' ~ item.picture)}}">
             {% endfor %}
         </div>
     </div>
 
     <div style="display:flex; justify-content:center; flex-wrap: wrap; gap: 2rem;">
         <div>
-            <h2> Avatar base stats (level 40)</h2>
-            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 1px solid black;">
+            <h2 style="margin:0;"> Avatar base stats (level 40)</h2>
+            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
                 <p> armor = </p>
                 <p> resist = </p>
-                <p> magicpower = </p>
+                <p> disrupt = </p>
+                <p> dodge = </p>
+                <p> magic power = </p>
                 <p> ap = </p>
                 <p> crit heal = </p>
-                <p> melee crit damage = </p>
+                <p> magic crit chance = </p>
+                <p> melee crit chance = </p>
                 <p> intel = </p>
                 <p> wound = </p>
                 <p> initiative = </p>
@@ -41,14 +36,17 @@
         </div>
 
         <div>
-            <h2> passive stats </h2>
-            <div style="padding: 1rem;display:grid; grid-template-columns: 200px 200px 200px 200px; border: 1px solid black;">
+            <h2 style="margin:0;"> Passive stats </h2>
+            <div style="padding: 1rem;display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
                 <p> armor = </p>
                 <p> resist = </p>
-                <p> magicpower = </p>
+                <p> disrupt = </p>
+                <p> dodge = </p>
+                <p> magic power = </p>
                 <p> ap = </p>
                 <p> crit heal = </p>
-                <p> melee crit damage = </p>
+                <p> magic crit chance = </p>
+                <p> melee crit chance = </p>
                 <p> intel = </p>
                 <p> wound = </p>
                 <p> initiative = </p>
@@ -60,40 +58,46 @@
         </div>
 
         <div>
-            <h2> gear stats </h2>
-            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 1px solid black;">
-                <p> armor = </p>
-                <p> resist = </p>
-                <p> magicpower = </p>
-                <p> ap = </p>
-                <p> crit heal = </p>
-                <p> melee crit damage = </p>
-                <p> intel = </p>
-                <p> wound = </p>
-                <p> initiative = </p>
-                <p> toughness = </p>
-                <p> strenght = </p>
-                <p> weapon skill = </p>
-                <p> wisdom = </p>
+            <h2 style="margin:0;"> Gear stats </h2>
+            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
+                <p> armor = {{armor}}</p>
+                <p> resist = {{resist}}</p>
+                <p> disrupt = {{disrupt}}</p>
+                <p> dodge = {{dodge}}</p>
+                <p> magicpower = {{magicpower}}</p>
+                <p> ap = {{ap}}</p>
+                <p> crit heal = {{critheal}}</p>
+                <p> magic crit chance= {{magiccritchance}}</p>
+                <p> melee crit chance= {{meleecritchance}}</p>
+                <p> intel = {{intel}}</p>
+                <p> wound = {{wound}}</p>
+                <p> initiative = {{initiative}}</p>
+                <p> toughness = {{toughness}}</p>
+                <p> strenght = {{strenght}}</p>
+                <p> weapon skill = {{weaponskill}}</p>
+                <p> wisdom = {{wisdom}}</p>
             </div>
         </div>
 
         <div>
-            <h2> Total stats </h2>
-            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 1px solid black;">
-                <p> total armor = {{armor}}</p>
-                <p> total resist = {{resist}}</p>
-                <p> total magicpower = {{magicpower}}</p>
-                <p> total ap = {{ap}}</p>
-                <p> total crit heal = {{critheal}}</p>
-                <p> total melee crit damage = {{meleecritdamage}}</p>
-                <p> total intel = {{intel}}</p>
-                <p> total wound = {{wound}}</p>
-                <p> total initiative = {{initiative}}</p>
-                <p> total toughness = {{toughness}}</p>
-                <p> total strenght = {{strenght}}</p>
-                <p> total weapon skill = {{weaponskill}}</p>
-                <p> total wisdom = {{wisdom}}</p>
+            <h2 style="margin:0;"> Total stats </h2>
+            <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
+                <p> Total armor = </p>
+                <p> Total resist = </p>
+                <p> Total disrupt = </p>
+                <p> Total dodge = </p>
+                <p> Total magic power = </p>
+                <p> Total ap = </p>
+                <p> Total crit heal = </p>
+                <p> Total magic crit chance = </p>
+                <p> Total melee crit chance = </p>
+                <p> Total intel = </p>
+                <p> Total wound = </p>
+                <p> Total initiative = </p>
+                <p> Total toughness = </p>
+                <p> Total strenght = </p>
+                <p> Total weapon skill = </p>
+                <p> Total wisdom = </p>
             </div>
         </div>
     </div>

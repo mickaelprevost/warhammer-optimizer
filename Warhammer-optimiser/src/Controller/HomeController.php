@@ -115,17 +115,23 @@ class HomeController extends AbstractController
         $totalResist = "0";
         $totalAP = "0";
         $totalArmor = "0";
-        $totalMeleecritdamage = "0";
+        $totalMeleecritchance = "0";
         $totalCritheal = "0";
         $totalMagicpower = "0";
         $totalWisdom = "0";
         $totalWeaponskill= "0";
+        $totalMagiccritchance = "0";
+        $totalDodge = "0";
+        $totalDisrupt = "0";
         
         foreach ($liste as $items) {
             $object[] = $items->getItems();
             $totalAP += $items->getItems()->getAP();
             $totalArmor += $items->getItems()->getArmor();
-            $totalMeleecritdamage += $items->getItems()->getMeleecritdamage();
+            $totalDisrupt += $items->getItems()->getDisrupt();
+            $totalDodge += $items->getItems()->getDodge();
+            $totalMagiccritchance += $items->getItems()->getMagiccritchance();
+            $totalMeleecritchance += $items->getItems()->getMeleecritchance();
             $totalCritheal += $items->getItems()->getCritheal();
             $totalInitiative += $items->getItems()->getInitiative();
             $totalIntel += $items->getItems()->getIntel();
@@ -141,11 +147,14 @@ class HomeController extends AbstractController
             'liste' => $object,
             'name' => $name,
             'armor' => $totalArmor,
+            'disrupt' => $totalDisrupt,
+            'dodge' => $totalDodge,
             'resist' => $totalResist,
             'magicpower' => $totalMagicpower,
             'ap' => $totalAP,
             'critheal' => $totalCritheal,
-            'meleecritdamage' => $totalMeleecritdamage,
+            'meleecritchance' => $totalMeleecritchance,
+            'magiccritchance' => $totalMagiccritchance,
             'intel' => $totalIntel,
             'wound' => $totalWound,
             'initiative' => $totalInitiative,

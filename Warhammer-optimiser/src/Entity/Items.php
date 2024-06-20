@@ -40,7 +40,7 @@ class Items
     private ?int $armor = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $meleecritdamage = null;
+    private ?int $meleecritchance = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $critheal = null;
@@ -74,6 +74,15 @@ class Items
 
     #[ORM\Column(nullable: true)]
     private ?int $weaponskill = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $magiccritchance = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $dodge = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $disrupt = null;
 
     public function __construct()
     {
@@ -247,14 +256,14 @@ class Items
         return $this;
     }
 
-    public function getMeleecritdamage(): ?int
+    public function getMeleecritchance(): ?int
     {
-        return $this->meleecritdamage;
+        return $this->meleecritchance;
     }
 
-    public function setMeleecritdamage(?int $critdamage): static
+    public function setMeleecritchance(?int $critchance): static
     {
-        $this->critdamage = $meleecritdamage;
+        $this->critchance = $meleecritchance;
 
         return $this;
     }
@@ -327,6 +336,42 @@ class Items
     public function setWeaponskill(?int $weaponskill): static
     {
         $this->weaponskill = $weaponskill;
+
+        return $this;
+    }
+
+    public function getMagiccritchance(): ?int
+    {
+        return $this->magiccritchance;
+    }
+
+    public function setMagiccritchance(?int $magiccritchance): static
+    {
+        $this->magiccritchance = $magiccritchance;
+
+        return $this;
+    }
+
+    public function getDodge(): ?int
+    {
+        return $this->dodge;
+    }
+
+    public function setDodge(?int $dodge): static
+    {
+        $this->dodge = $dodge;
+
+        return $this;
+    }
+
+    public function getDisrupt(): ?int
+    {
+        return $this->disrupt;
+    }
+
+    public function setDisrupt(?int $disrupt): static
+    {
+        $this->disrupt = $disrupt;
 
         return $this;
     }
