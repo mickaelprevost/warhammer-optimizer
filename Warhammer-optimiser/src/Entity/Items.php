@@ -28,7 +28,7 @@ class Items
     private ?int $initiative = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $wisdom = null;
+    private ?int $willpower = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $toughness = null;
@@ -149,14 +149,14 @@ class Items
         return $this;
     }
 
-    public function getWisdom(): ?int
+    public function getWillpower(): ?int
     {
-        return $this->wisdom;
+        return $this->willpower;
     }
 
-    public function setWisdom(?int $wisdom): static
+    public function setWillpower(?int $willpower): static
     {
-        $this->wisdom = $wisdom;
+        $this->willpower = $willpower;
 
         return $this;
     }

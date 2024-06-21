@@ -11,6 +11,7 @@ use App\Repository\SetsRepository;
 use App\Repository\TemplateRepository;
 use App\Repository\TemplateListeRepository;
 use App\Repository\ItemsItemsTypeRepository;
+use App\Repository\BasestatsRepository;
 use App\Entity\Items;
 use App\Entity\Template;
 use App\Entity\TemplateListe;
@@ -82,6 +83,7 @@ class HomeController extends AbstractController
             } 
 
             $template->setNom($Nom);
+            $template->setClass($classe);
             $entityManager->persist($template);
 
             foreach ($Liste as $liste) {
@@ -104,10 +106,12 @@ class HomeController extends AbstractController
 
     #[Route('/template/{id<\d+>}', name: 'app_template')]
     public function template($id, TemplateRepository $templateRepository, TemplateListeRepository $templateListeRepository,
-    ItemsRepository $itemsRepository): Response
+    ItemsRepository $itemsRepository, BasestatsRepository $basestatsRepository): Response
     {
         $name = $templateRepository->findOneBy(['id' => $id]);
         $liste = $templateListeRepository->findBy(['template' => $id]);
+        $classeId = $name->getClass()->getId();
+        $Basestats = $basestatsRepository->findOneBy(['classId' => $classeId]);
 
         $object=[];
         $totalIntel = "0";
@@ -121,7 +125,7 @@ class HomeController extends AbstractController
         $totalMeleecritchance = "0";
         $totalCritheal = "0";
         $totalMagicpower = "0";
-        $totalWisdom = "0";
+        $totalWillpower = "0";
         $totalWeaponskill= "0";
         $totalMagiccritchance = "0";
         $totalDodge = "0";
@@ -143,10 +147,12 @@ class HomeController extends AbstractController
             $totalStrenght += $items->getItems()->getStrenght();
             $totalToughness += $items->getItems()->getToughness();
             $totalWeaponskill += $items->getItems()->getWeaponskill();  
-            $totalWisdom += $items->getItems()->getWisdom(); 
+            $totalWillpower += $items->getItems()->getWillpower(); 
             $totalWound += $items->getItems()->getWound();          
         }
+
         return $this->render('template.html.twig', [
+            'basestats' => $Basestats,
             'liste' => $object,
             'name' => $name,
             'armor' => $totalArmor,
@@ -163,7 +169,7 @@ class HomeController extends AbstractController
             'initiative' => $totalInitiative,
             'toughness' => $totalToughness,
             'strenght' => $totalStrenght,
-            'wisdom' => $totalWisdom,
+            'willpower' => $totalWillpower,
             'weaponskill' => $totalWeaponskill
         ]);
     }

@@ -24,6 +24,9 @@ class Template
     #[ORM\OneToMany(targetEntity: TemplateListe::class, mappedBy: 'template')]
     private Collection $templateListes;
 
+    #[ORM\ManyToOne(inversedBy: 'templates')]
+    private ?Classe $class = null;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
@@ -72,6 +75,18 @@ class Template
                 $templateListe->setTemplate(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClass(): ?Classe
+    {
+        return $this->class;
+    }
+
+    public function setClass(?Classe $class): static
+    {
+        $this->class = $class;
 
         return $this;
     }
