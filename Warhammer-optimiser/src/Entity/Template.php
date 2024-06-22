@@ -27,9 +27,16 @@ class Template
     #[ORM\ManyToOne(inversedBy: 'templates')]
     private ?Classe $class = null;
 
+    /**
+     * @var Collection<int, TemplateRenownAbilitiesListe>
+     */
+    #[ORM\OneToMany(targetEntity: TemplateRenownAbilitiesListe::class, mappedBy: 'template')]
+    private Collection $templateRenownAbilitiesListes;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
+        $this->templateRenownAbilitiesListes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -87,6 +94,36 @@ class Template
     public function setClass(?Classe $class): static
     {
         $this->class = $class;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TemplateRenownAbilitiesListe>
+     */
+    public function getTemplateRenownAbilitiesListes(): Collection
+    {
+        return $this->templateRenownAbilitiesListes;
+    }
+
+    public function addTemplateRenownAbilitiesListe(TemplateRenownAbilitiesListe $templateRenownAbilitiesListe): static
+    {
+        if (!$this->templateRenownAbilitiesListes->contains($templateRenownAbilitiesListe)) {
+            $this->templateRenownAbilitiesListes->add($templateRenownAbilitiesListe);
+            $templateRenownAbilitiesListe->setTemplate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemplateRenownAbilitiesListe(TemplateRenownAbilitiesListe $templateRenownAbilitiesListe): static
+    {
+        if ($this->templateRenownAbilitiesListes->removeElement($templateRenownAbilitiesListe)) {
+            // set the owning side to null (unless already changed)
+            if ($templateRenownAbilitiesListe->getTemplate() === $this) {
+                $templateRenownAbilitiesListe->setTemplate(null);
+            }
+        }
 
         return $this;
     }

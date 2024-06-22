@@ -63,9 +63,6 @@ class Items
     #[ORM\ManyToOne(inversedBy: 'items')]
     private ?Sets $sets = null;
 
-    #[ORM\ManyToOne(inversedBy: 'items')]
-    private ?Itemstype $type = null;
-
     /**
      * @var Collection<int, TemplateListe>
      */
@@ -89,6 +86,15 @@ class Items
      */
     #[ORM\OneToMany(targetEntity: ItemsItemsType::class, mappedBy: 'item')]
     private Collection $itemsItemsTypes;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $reducedarmorpen = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $regen4sec = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $moralesec = null;
 
     public function __construct()
     {
@@ -221,18 +227,6 @@ class Items
         return $this;
     }
 
-    public function getType(): ?Itemstype
-    {
-        return $this->type;
-    }
-
-    public function setType(?Itemstype $type): static
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, TemplateListe>
      */
@@ -268,9 +262,9 @@ class Items
         return $this->meleecritchance;
     }
 
-    public function setMeleecritchance(?int $critchance): static
+    public function setMeleecritchance(?int $meleecritchance): static
     {
-        $this->critchance = $meleecritchance;
+        $this->meleecritchance = $meleecritchance;
 
         return $this;
     }
@@ -409,6 +403,42 @@ class Items
                 $itemsItemsType->setItem(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReducedarmorpen(): ?int
+    {
+        return $this->reducedarmorpen;
+    }
+
+    public function setReducedarmorpen(?int $reducedarmorpen): static
+    {
+        $this->reducedarmorpen = $reducedarmorpen;
+
+        return $this;
+    }
+
+    public function getRegen4sec(): ?int
+    {
+        return $this->regen4sec;
+    }
+
+    public function setRegen4sec(?int $regen4sec): static
+    {
+        $this->regen4sec = $regen4sec;
+
+        return $this;
+    }
+
+    public function getMoralesec(): ?int
+    {
+        return $this->moralesec;
+    }
+
+    public function setMoralesec(?int $moralesec): static
+    {
+        $this->moralesec = $moralesec;
 
         return $this;
     }

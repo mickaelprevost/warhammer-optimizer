@@ -19,12 +19,6 @@ class Itemstype
     private ?string $name = null;
 
     /**
-     * @var Collection<int, Items>
-     */
-    #[ORM\OneToMany(targetEntity: Items::class, mappedBy: 'type')]
-    private Collection $items;
-
-    /**
      * @var Collection<int, ItemsItemsType>
      */
     #[ORM\OneToMany(targetEntity: ItemsItemsType::class, mappedBy: 'type')]
@@ -32,7 +26,6 @@ class Itemstype
 
     public function __construct()
     {
-        $this->items = new ArrayCollection();
         $this->itemsItemsTypes = new ArrayCollection();
     }
 
@@ -53,35 +46,6 @@ class Itemstype
         return $this;
     }
 
-    /**
-     * @return Collection<int, Items>
-     */
-    public function getItems(): Collection
-    {
-        return $this->items;
-    }
-
-    public function addItem(Items $item): static
-    {
-        if (!$this->items->contains($item)) {
-            $this->items->add($item);
-            $item->setType($this);
-        }
-
-        return $this;
-    }
-
-    public function removeItem(Items $item): static
-    {
-        if ($this->items->removeElement($item)) {
-            // set the owning side to null (unless already changed)
-            if ($item->getType() === $this) {
-                $item->setType(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, ItemsItemsType>

@@ -20,42 +20,47 @@
             <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
                 <p> armor = {{basestats.armor}}</p>
                 <p> resist = {{basestats.resist}}</p>
-                <p> disrupt = {{basestats.disrupt}}</p>
-                <p> dodge = {{basestats.dodge}}</p>
+                <p> disrupt = {{basestats.disrupt}} %</p>
+                <p> dodge = {{basestats.dodge}} %</p>
                 <p> magic power = {{basestats.magicpower}}</p>
-                <p> ap = {{basestats.ap}}</p>
-                <p> crit heal = {{basestats.critheal}}</p>
-                <p> magic crit chance = {{basestats.magiccritchance}}</p>
-                <p> melee crit chance = {{basestats.meleecritchance}}</p>
+                <p> ap/sec = {{basestats.ap}}</p>
+                <p> crit heal = {{basestats.critheal}} %</p>
+                <p> magic crit chance = {{basestats.magiccritchance}} %</p>
+                <p> melee crit chance = {{basestats.meleecritchance}} %</p>
                 <p> intel = {{basestats.intel}}</p>
                 <p> wound = {{basestats.wound}}</p>
                 <p> initiative = {{basestats.initiative}}</p>
                 <p> toughness = {{basestats.toughness}}</p>
                 <p> strenght = {{basestats.strenght}}</p>
                 <p> weapon skill = {{basestats.weaponskill}}</p>
-                <p> willpower= {{basestats.willpower}}</p>
             </div>
         </div>
 
         <div>
-            <h2 style="margin:0;"> Passive stats </h2>
+            <h2 style="margin:0;"> Renown stats </h2>
             <div style="padding: 1rem;display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
-                <p> armor = </p>
-                <p> resist = </p>
-                <p> disrupt = </p>
-                <p> dodge = </p>
-                <p> magic power = </p>
-                <p> ap = </p>
-                <p> crit heal = </p>
-                <p> magic crit chance = </p>
-                <p> melee crit chance = </p>
-                <p> intel = </p>
-                <p> wound = </p>
-                <p> initiative = </p>
-                <p> toughness = </p>
-                <p> strenght = </p>
+                <p> intel = {{ RenownIntel}}  </p>
                 <p> weapon skill = </p>
+                <p> block chance = </p>
+                <p> dodge / disrupt chance = </p>
+                <p> max ap increase = </p>
+                <p> magic crit chance = </p>
+                <p> toughness = </p>
+                <p> crit received chances = -%</p>
+                <p> damage deal/received= </p>
+                <p> inititative = </p>
+                <p> sprint boost(sec) = s</p>
+                <p> ballistic skill = </p>
+                <p> strenght= </p>
+                <p> melee crit chance= </p>
+                <p> % to boost move speed on hit= </p>
+                <p> parry chance = </p>
+                <p> natural regen increase = </p>
                 <p> willpower = </p>
+                <p> crit heal chance = </p>
+                <p> ranged crit chance = </p>
+                <p> crit damage reduced = </p>
+                <p> wound</p>
             </div>
         </div>
 
@@ -65,12 +70,12 @@
                 <p> armor = {{armor}}</p>
                 <p> resist = {{resist}}</p>
                 <p> disrupt = {{disrupt}}</p>
-                <p> dodge = {{dodge}}</p>
+                <p> dodge = {{dodge}} %</p>
                 <p> magicpower = {{magicpower}}</p>
-                <p> ap = {{ap}}</p>
-                <p> crit heal = {{critheal}}</p>
-                <p> magic crit chance= {{magiccritchance}}</p>
-                <p> melee crit chance= {{meleecritchance}}</p>
+                <p> ap / sec = {{ap}}</p>
+                <p> crit heal = {{critheal}} %</p>
+                <p> magic crit chance= {{magiccritchance}} %</p>
+                <p> melee crit chance= {{meleecritchance}} %</p>
                 <p> intel = {{intel}}</p>
                 <p> wound = {{wound}}</p>
                 <p> initiative = {{initiative}}</p>
@@ -78,6 +83,9 @@
                 <p> strenght = {{strenght}}</p>
                 <p> weapon skill = {{weaponskill}}</p>
                 <p> willpower = {{willpower}}</p>
+                <p> morale/sec= {{morale}}</p>
+                <p> regen pv /4sec= {{regenpv}}</p>
+                <p> reduced armor pen= {{reducarmorpen}} %</p>
             </div>
         </div>
 
@@ -86,20 +94,23 @@
             <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
                 <p> Total armor =  {{armor + basestats.armor}}</p>
                 <p> Total resist = {{resist + basestats.resist}}</p>
-                <p> Total disrupt = {{disrupt + basestats.disrupt}}</p>
-                <p> Total dodge = {{dodge + basestats.dodge}}</p>
+                <p> Total disrupt = {{disrupt + basestats.disrupt}} %</p>
+                <p> Total dodge = {{dodge + basestats.dodge}} %</p>
                 <p> Total magic power = {{magicpower + basestats.magicpower}}</p>
-                <p> Total ap = {{intel + basestats.intel}}</p>
-                <p> Total crit heal = {{critheal + basestats.critheal}}</p>
-                <p> Total magic crit chance = {{magiccritchance + basestats.magiccritchance}}</p>
-                <p> Total melee crit chance = {{meleecritchance + basestats.meleecritchance}}</p>
-                <p> Total intel = {{intel + basestats.intel}}</p>
+                <p> Total ap/sec = {{ap + basestats.ap}} </p>
+                <p> Total crit heal = {{critheal + basestats.critheal}} %</p>
+                <p> Total magic crit chance = {{magiccritchance + basestats.magiccritchance}} %</p>
+                <p> Total melee crit chance = {{meleecritchance + basestats.meleecritchance}} %</p>
+                <p> Total intel = {{intel + basestats.intel + RenownIntel}}</p>
                 <p> Total wound = {{wound + basestats.wound}}</p>
                 <p> Total initiative = {{initiative + basestats.initiative}}</p>
                 <p> Total toughness = {{toughness + basestats.toughness}}</p>
                 <p> Total strenght = {{strenght + basestats.strenght}}</p>
                 <p> Total weapon skill = {{weaponskill + basestats.weaponskill}}</p>
                 <p> Total willpower= {{willpower + basestats.willpower}}</p>
+                <p> Total morale/sec= {{morale}} </p>
+                <p> Total regen pv /4sec= {{regenpv}}</p>
+                <p> Total reduced armor pen= {{reducarmorpen}} %</p>
             </div>
         </div>
     </div>
