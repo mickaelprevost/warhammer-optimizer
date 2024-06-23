@@ -77,6 +77,9 @@ class Basestats
     #[ORM\Column(nullable: true)]
     private ?int $meleecritchance = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $rangedcritchance = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -330,6 +333,18 @@ class Basestats
     public function setMeleecritchance(?int $meleecritchance): static
     {
         $this->meleecritchance = $meleecritchance;
+
+        return $this;
+    }
+
+    public function getRangedcritchance(): ?int
+    {
+        return $this->rangedcritchance;
+    }
+
+    public function setRangedcritchance(?int $rangedcritchance): static
+    {
+        $this->rangedcritchance = $rangedcritchance;
 
         return $this;
     }

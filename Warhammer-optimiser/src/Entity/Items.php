@@ -96,6 +96,18 @@ class Items
     #[ORM\Column(nullable: true)]
     private ?int $moralesec = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $rangedcritchance = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $ballisticskill = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $block = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $parry = null;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
@@ -439,6 +451,54 @@ class Items
     public function setMoralesec(?int $moralesec): static
     {
         $this->moralesec = $moralesec;
+
+        return $this;
+    }
+
+    public function getRangedcritchance(): ?int
+    {
+        return $this->rangedcritchance;
+    }
+
+    public function setRangedcritchance(?int $rangedcritchance): static
+    {
+        $this->rangedcritchance = $rangedcritchance;
+
+        return $this;
+    }
+
+    public function getBallisticskill(): ?int
+    {
+        return $this->ballisticskill;
+    }
+
+    public function setBallisticskill(?int $ballisticskill): static
+    {
+        $this->ballisticskill = $ballisticskill;
+
+        return $this;
+    }
+
+    public function getBlock(): ?int
+    {
+        return $this->block;
+    }
+
+    public function setBlock(?int $block): static
+    {
+        $this->block = $block;
+
+        return $this;
+    }
+
+    public function getParry(): ?int
+    {
+        return $this->parry;
+    }
+
+    public function setParry(?int $parry): static
+    {
+        $this->parry = $parry;
 
         return $this;
     }
