@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div style="display:flex; justify-content:center; margin-top:3rem; width:100%; height:220px;">
+    	<img style="width:400px; height:100%;" src="../asset/images/logo.jpeg" alt="logo"> 
+    </div>
+
+    <h1 style = "text-align:center;">The selected gear contains {{TalismanSlots}} Talismans slot.</h1>
+    <h2 style = "text-align:center;">Select the quantities of each talismans you need.</h2>
+
+    <div style="display:flex; justify-content:center;">
+      <h2  style="font-size:30px; text-align:center;" class="total"> </h2><h2 style="font-size:30px;">/</h2>  
+      <h2  style="font-size:30px; text-align:center;" class="max">{{TalismanSlots}} talismans slot used</h2>
+    </div>
+
+        <form action="" method="post">
+            <h2 style="text-align:center;"> Talismans </h2>
+
+            <div style="display: grid;grid-template-columns: 300px 300px;gap: 1rem;justify-content: center;">
+              {% for talisman in talismans %}
+               <div style="display:flex; gap:1rem">
+                  <select style ="font-size: 20px;border-radius: 15px;padding: 5px; width: 200px;text-align: center;" name="talismans[]">
+                    <option value="{{talisman.name}}">
+                      {{talisman.name}}
+                    </option>
+                  </select>
+                  <input class="qtityInput" style ="font-size: 20px;border-radius: 15px;text-align:center;"
+                  type="number" name="quantity[]" value="0" min="0" max="10" required></input>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div style="display:flex; justify-content:center;">
+              <input style="width: 100px;height: 40px;border-radius: 15px; margin-top: 2rem;" type="submit"></input>
+            </div>
+        </form>
+
+{% endblock %}

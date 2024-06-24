@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div style="display: grid;grid-template-columns: 800px 800px;justify-content: center;gap: 2rem;">
+    <div style="display: grid;grid-template-columns: 800px 815px;justify-content: center;gap: 2rem;">
         <div>
             <h2 style="margin:0;"> Avatar base stats (level 40)</h2>
             <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
@@ -43,29 +43,29 @@
 
         <div>
             <h2 style="margin:0;"> Renown stats </h2>
-            <div style="padding: 1rem;display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
+            <div style="padding: 1rem;display:grid; grid-template-columns: 200px 185px 210px 200px; border: 2px solid black; border-radius:10px;">
                 <p> intel = {{ RenownIntel}}  </p>
-                <p> weapon skill = </p>
-                <p> block chance = </p>
-                <p> dodge / disrupt chance = </p>
-                <p> max ap increase = </p>
-                <p> magic crit chance = </p>
-                <p> toughness = </p>
-                <p> crit received chances = </p>
-                <p> damage deal/received= </p>
-                <p> inititative = </p>
-                <p> sprint boost(sec) = </p>
-                <p> ballistic skill = </p>
-                <p> strenght= </p>
-                <p> melee crit chance= </p>
-                <p> % move speed up on hit= </p>
-                <p> parry chance = </p>
-                <p> natural regen increase = </p>
-                <p> willpower = </p>
-                <p> heal crit chance = </p>
-                <p> ranged crit chance = </p>
-                <p> crit damage reduced = </p>
-                <p> wound = </p>
+                <p> weapon skill = {{RenownWeaponskill}} </p>
+                <p> block chance = {{RenownBlock}} %</p>
+                <p> dodge / disrupt chance = {{RenownDodgedisrupt}} %</p>
+                <p> max ap increase = {{RenownApmax}} </p>
+                <p> magic crit chance = {{RenownMagiccrit}} %</p>
+                <p> toughness = {{RenownToughness}} </p>
+                <p> crit received chances = {{RenownCritreceived}} %</p>
+                <p> damage deal/received= {{RenownDamagedealandreceived}} %</p>
+                <p> inititative = {{RenownInitiative}}</p>
+                <p> sprint boost(sec) = {{RenownSprintboost}}</p>
+                <p> ballistic skill = {{RenownBallisticskill}}</p>
+                <p> strenght= {{RenownStrenght}}</p>
+                <p> melee crit chance= {{RenownMeleecrit}} %</p>
+                <p> % move speed up on hit= {{RenownMovespeedonhit}} %</p>
+                <p> parry chance = {{RenownParry}} %</p>
+                <p> natural regen increase = {{RenownRegenincrease}}</p>
+                <p> willpower = {{RenownWillpower}}</p>
+                <p> heal crit chance = {{RenownHealcrit}} %</p>
+                <p> ranged crit chance = {{RenownRangedcrit}} %</p>
+                <p> crit damage reduced = {{RenownCritdamagereceived}} %</p>
+                <p> wound = {{RenownWound}}</p>
             </div>
         </div>
 
@@ -75,7 +75,7 @@
                 <p> armor = {{armor}}</p>
                 <p> resist = {{resist}}</p>
                 <p> disrupt = {{disrupt|number_format(1, '.', ',')}}</p>
-                <p> dodge = {{dodge|number_format(1, '.', ',')}} %</p>
+                <p> dodge = {{dodge|number_format(1, '.', ',')}}</p>
                 <p> magicpower = {{magicpower}}</p>
                 <p> ap / sec = {{ap}}</p>
                 <p> heal crit chance = {{critheal}} %</p>
@@ -101,29 +101,29 @@
         <div>
             <h2 style="margin:0;"> Total stats </h2>
             <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
-                <p> armor =  {{armor + basestats.armor}}</p>
-                <p> resist = {{resist + basestats.resist}}</p>
-                <p> disrupt = {{disrupt + disruptfromwillpower|number_format(1, '.', ',')}} %</p>
-                <p> dodge = {{dodge + dodgefrominitiative|number_format(1, '.', ',')}}%</p>
-                <p> magic power = {{magicpower + basestats.magicpower}} + 99</p>
-                <p> ap/sec = {{ap + basestats.ap}} </p>
-                <p> heal crit chance = {{critheal + basestats.critheal}} %</p>
-                <p> magic crit chance = {{magiccritchance + basestats.magiccritchance}} %</p>
-                <p> melee crit chance = {{meleecritchance + basestats.meleecritchance}} %</p>
-                <p> ranged crit chance= {{rangedcritchance + basestats.rangedcritchance}} %</p>
-                <p> intel = {{intel + basestats.intel + RenownIntel}} + {{355}}</p>
-                <p> wound = {{wound + basestats.wound}} + 194 </p>
-                <p> initiative = {{initiative + basestats.initiative}}</p>
-                <p> toughness = {{toughness + basestats.toughness}}</p>
-                <p> strenght = {{strenght + basestats.strenght}}</p>
-                <p> weapon skill = {{weaponskill + basestats.weaponskill}}</p>
-                <p> willpower= {{willpower + basestats.willpower}}</p>
-                <p> ballistic skill = {{ballisticskill + basestats.ballisticskill}}</p>
-                <p> block = {{block + basestats.block}} %</p>
-                <p> parry = {{parry + parryfromweaponskill|number_format(1, '.', ',')}} %</p>
-                <p> morale/sec= {{morale}} </p>
-                <p> regen pv /4sec = {{regenpv}}</p>
-                <p> lower armor pen = {{reducarmorpen}} %</p>
+                <p style="font-weight:bold;"> armor =  {{armor + basestats.armor + talismansarmor}}</p>
+                <p style="font-weight:bold;"> resist = {{resist + basestats.resist}}</p>
+                <p style="font-weight:bold;"> disrupt = {{disrupt|number_format(1, '.', ',') + disruptfromwillpower|number_format(1, '.', ',') + RenownDodgedisrupt|number_format(1, '.', ',')}} %</p>
+                <p style="font-weight:bold;"> dodge = {{dodge|number_format(1, '.', ',') + dodgefrominitiative|number_format(1, '.', ',') + RenownDodgedisrupt|number_format(1, '.', ',')}} %</p>
+                <p style="font-weight:bold;"> magic power = {{magicpower + basestats.magicpower}}</p>
+                <p style="font-weight:bold;"> ap/sec = {{ap + basestats.ap}} </p>
+                <p style="font-weight:bold;"> heal crit chance = {{critheal + basestats.critheal + RenownHealcrit}} %</p>
+                <p style="font-weight:bold;"> magic crit chance = {{magiccritchance + basestats.magiccritchance + RenownMagiccrit}} %</p>
+                <p style="font-weight:bold;"> melee crit chance = {{meleecritchance + basestats.meleecritchance + RenownMeleecrit}} %</p>
+                <p style="font-weight:bold;"> ranged crit chance = {{rangedcritchance + basestats.rangedcritchance + RenownRangedcrit}} %</p>
+                <p style="font-weight:bold;"> intel = {{intel + basestats.intel + RenownIntel + talismansintel}}</p>
+                <p style="font-weight:bold;"> wound = {{wound + basestats.wound + RenownWound + talismanswound}}</p>
+                <p style="font-weight:bold;"> initiative = {{initiative + basestats.initiative + RenownInitiative + talismansinitiative}}</p>
+                <p style="font-weight:bold;"> toughness = {{toughness + basestats.toughness + RenownToughness + talismanstoughness}}</p>
+                <p style="font-weight:bold;"> strenght = {{strenght + basestats.strenght + RenownStrenght + talismansstrenght}}</p>
+                <p style="font-weight:bold;"> weapon skill = {{weaponskill + basestats.weaponskill + RenownWeaponskill + talismansweaponskill}}</p>
+                <p style="font-weight:bold;"> willpower= {{willpower + basestats.willpower + RenownWillpower + talismanswillpower}}</p>
+                <p style="font-weight:bold;"> ballistic skill = {{ballisticskill + basestats.ballisticskill + RenownBallisticskill + talismansballisticskill}}</p>
+                <p style="font-weight:bold;"> block = {{block|number_format(1, '.', ',') + basestats.block|number_format(1, '.', ',') + RenownBlock}} %</p>
+                <p style="font-weight:bold;"> parry = {{parry|number_format(1, '.', ',') + parryfromweaponskill|number_format(1, '.', ',') + RenownParry + ParryfromRenownWeaponskill + ParryFromTalismansWeaponskill}} %</p>
+                <p style="font-weight:bold;"> morale/sec= {{morale}} </p>
+                <p style="font-weight:bold;"> regen pv /4sec = {{regenpv}}</p>
+                <p style="font-weight:bold;"> lower armor pen = {{reducarmorpen}} %</p>
             </div>
         </div>
     </div>

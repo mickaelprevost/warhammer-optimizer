@@ -15,6 +15,9 @@ use App\Repository\TemplateRenownAbilitiesListeRepository;
 use App\Entity\Template;
 use App\Entity\TemplateListe;
 use App\Entity\TemplateRenownAbilitiesListe;
+use App\Entity\TemplateTalismansListe;
+use App\Repository\TalismansRepository;
+use App\Repository\TemplateTalismansListeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -129,7 +132,7 @@ class HomeController extends AbstractController
             }
         }
             $entityManager->flush();
-            return $this->redirectToRoute('app_template', ['id' => $template->getId()]);
+            return $this->redirectToRoute('app_gearslots', ['id' => $template->getId()]);
         }
          
         return $this->render('renown.html.twig', [
@@ -137,9 +140,63 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/{id<\d+>}/Talismans', name: 'app_gearslots')]
+    public function gemslots($id, TemplateListeRepository $templateListeRepository, TalismansRepository $talismansRepository,
+    TemplateRepository $templateRepository, TemplateTalismansListeRepository $TemplateTalismansListeRepository, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $liste = $templateListeRepository->findBy(['template' => $id]);
+        $template = $templateRepository->findOneby(['id' => $id]);
+        $talismanAll = $talismansRepository->findAll();
+        $slotNumber = "0";
+
+        foreach ($liste as $items) {
+            $slotNumber += $items->getItems()->getslot();
+            }
+        
+            if ($request->getMethod() === 'POST') {
+
+                $all = $request->request->All();
+                $quantities =$all['quantity'];
+            
+
+                foreach ($all['talismans'] as $item) {
+                    $talismanListe[] = $talismansRepository->findBy(['name' => $item]);
+                }
+    
+                if ($talismanListe !== null ) {
+                foreach ($talismanListe as $liste) {
+                    foreach ($liste as $object) {
+                    $TemplateTalismansListe = new TemplateTalismansListe();
+                    $TemplateTalismansListe->setTalismans($object);
+                    $TemplateTalismansListe->setTemplate($template);
+                    $entityManager->persist($TemplateTalismansListe);
+                    }
+                }  
+            }
+                $entityManager->flush();
+                $test = $TemplateTalismansListeRepository->findBy(['template' => $id]);
+                foreach ($test as $id => $liste) {
+                    foreach ($quantities as $key => $quantity) {
+                        if ($id == $key) { 
+                            $liste->setQuantity($quantity);
+                            $entityManager->persist($liste);
+                        }
+                    }
+                }
+                $entityManager->flush();
+                return $this->redirectToRoute('app_template', ['id' => $template->getId()]);
+            }
+    
+        return $this->render('talismans.html.twig', [
+        'talismans' => $talismanAll,
+        'TalismanSlots' => $slotNumber,
+        ]);
+    }
+
     #[Route('{id<\d+>}/results', name: 'app_template')]
     public function template($id, TemplateRepository $templateRepository, TemplateListeRepository $templateListeRepository,
-    ItemsRepository $itemsRepository, BasestatsRepository $basestatsRepository, TemplateRenownAbilitiesListeRepository $templateRenownAbilitiesRepository): Response
+    BasestatsRepository $basestatsRepository, TemplateRenownAbilitiesListeRepository $templateRenownAbilitiesRepository,
+    TemplateTalismansListeRepository $templateTalismansRepository): Response
     {
         $name = $templateRepository->findOneBy(['id' => $id]);
         $liste = $templateListeRepository->findBy(['template' => $id]);
@@ -149,7 +206,54 @@ class HomeController extends AbstractController
         $DodgefromInitiative = $Basestats->getInitiative() * 0.03;
         $DisruptfromWillpower = $Basestats->getWillpower() * 0.03;
         $ParryfromWeaponskill = $Basestats->getWeaponskill() * 0.03;
+
         $templateRenown = $templateRenownAbilitiesRepository->findBy(['template' => $id]);
+        
+        $talismansListe = $templateTalismansRepository->findBy(['template' => $id]);
+        $Talismansintel = '0';
+        $Talismanswound = '0';
+        $Talismansinitiative = '0';
+        $DodgeFromTalismansIni = '0';
+        $Talismanstoughness = '0';
+        $Talismansstrenght = '0';
+        $Talismanswillpower = '0';
+        $DisruptFromTalismansWill = '0';
+        $Talismansweaponskill = '0';
+        $ParryFromTalismansWeaponskill = '0';
+        $Talismansballisticskill = '0';
+        $Talismansarmor = '0';
+        foreach ($talismansListe as $id => $talisman) {
+            if ($id <= 1){
+                $Talismansintel += $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+            }
+            if ($id > 1 && $id <= 3){
+                $Talismanswound += $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+            }
+            if ($id > 3 && $id <= 5){
+                $Talismansinitiative += $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+                $DodgeFromTalismansIni = $Talismansinitiative * 0.03;
+            }
+            if ($id > 5 && $id <= 7){
+                $Talismanstoughness += $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+            }
+            if ($id > 7 && $id <= 9){
+                $Talismansstrenght += $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+            }
+            if ($id > 9 && $id <= 11){
+                $Talismanswillpower += $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+                $DisruptFromTalismansWill = $Talismanswillpower * 0.03;
+            }
+            if ($id > 11 && $id <= 13){
+                $Talismansweaponskill+= $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+                $ParryFromTalismansWeaponskill = $Talismansweaponskill * 0.03;
+            }
+            if ($id > 13 && $id <= 15){
+                $Talismansballisticskill += $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+            }
+            if ($id > 15 && $id <= 17){
+                $Talismansarmor += $talisman->getQuantity() * $talisman->getTalismans()->getValue();
+            }
+        }
 
         $object=[];
         $totalIntel = "0";
@@ -175,6 +279,7 @@ class HomeController extends AbstractController
         $totalBallisticskill= "0";
         $totalBlock = "0";
         $totalParry = "0";
+        
         
         foreach ($liste as $items) {
         $object[] = $items->getItems();
@@ -229,6 +334,9 @@ class HomeController extends AbstractController
         $critdamagereceived= '0';
         $sprintboost = '0';
         $movespeedonhit = '0';
+        $DodgeFromRenownIni = '0';
+        $DisruptFromRenownWill ='0';
+        $ParryFromRenownWeaponskill= '0';
         foreach ($templateRenown as $renown) {
                 if ($renown->getRenownabilities()->getType() == ("intel")) {
                     $intel += $renown->getRenownabilities()->getValue();
@@ -244,9 +352,11 @@ class HomeController extends AbstractController
                 }
                 if ($renown->getRenownabilities()->getType() == ("initiative")) {
                     $initiative += $renown->getRenownabilities()->getValue();
+                    $DodgeFromRenownIni = $initiative * 0.03;
                 }
                 if ($renown->getRenownabilities()->getType() == ("willpower")) {
                     $willpower += $renown->getRenownabilities()->getValue();
+                    $DisruptFromRenownWill = $willpower * 0.03;
                 }
                 if ($renown->getRenownabilities()->getType() == ("magiccrit")) {
                     $magiccrit += $renown->getRenownabilities()->getValue();
@@ -262,6 +372,7 @@ class HomeController extends AbstractController
                 }
                 if ($renown->getRenownabilities()->getType() == ("weaponskill")) {
                     $weaponskill += $renown->getRenownabilities()->getValue();
+                    $ParryFromRenownWeaponskill = $weaponskill * 0.03;
                 }
                 if ($renown->getRenownabilities()->getType() == ("ballisticskill")) {
                     $ballisticskill += $renown->getRenownabilities()->getValue();
@@ -299,17 +410,23 @@ class HomeController extends AbstractController
         }
 
         return $this->render('template.html.twig', [
+            'name' => $name,
+
+            /* stats from renown */
             'RenownIntel' => $intel,
             'RenownWound' => $wound,
             'RenownStrenght' => $strenght,
             'RenownToughness' => $toughness,
             'RenownInitiative' => $initiative,
+            'DodgefromRenownIni'=> $DodgeFromRenownIni,
             'RenownMagiccrit' => $magiccrit,
             'RenownMeleecrit' => $meleecrit,
             'RenownRangedcrit' => $rangedcrit,
             'RenownHealcrit' => $healcrit,
             'RenownWillpower' => $willpower,
+            'DisruptfromRenownIni'=> $DisruptFromRenownWill,
             'RenownWeaponskill' => $weaponskill,
+            'ParryfromRenownWeaponskill'=> $ParryFromRenownWeaponskill,
             'RenownBallisticskill' => $ballisticskill,
             'RenownBlock' => $block,
             'RenownDodgedisrupt' => $dodgedisrupt,
@@ -321,12 +438,17 @@ class HomeController extends AbstractController
             'RenownCritdamagereceived' => $critdamagereceived,
             'RenownSprintboost' => $sprintboost,
             'RenownMovespeedonhit' => $movespeedonhit,
+
+            /* base stats */
             'basestats' => $Basestats,
             'dodgefrominitiative' => $DodgefromInitiative,
             'disruptfromwillpower' => $DisruptfromWillpower,
             'parryfromweaponskill' => $ParryfromWeaponskill,
+
+            /* items liste */
             'liste' => $object,
-            'name' => $name,
+
+            /* items stats */
             'armor' => $totalArmor,
             'disrupt' => $totalDisrupt + $GeardisruptfromWillpower,
             'dodge' => $totalDodge + $GeardodgefromInitiative,
@@ -349,7 +471,21 @@ class HomeController extends AbstractController
             'weaponskill' => $totalWeaponskill,
             'morale' => $totalMorale,
             'regenpv' =>$totalRegenpv,
-            'reducarmorpen' => $totalReducedarmorpen
+            'reducarmorpen' => $totalReducedarmorpen,
+
+            /* talismans stats */
+            'talismansintel' => $Talismansintel,
+            'talismanswound' => $Talismanswound,         
+            'talismansinitiative' => $Talismansinitiative,
+            'DodgeFromTalismansIni' => $DodgeFromTalismansIni,
+            'talismanstoughness' => $Talismanstoughness,
+            'talismansstrenght' => $Talismansstrenght, 
+            'talismanswillpower' => $Talismanswillpower,
+            'DisruptFromTalismansWillpower' => $DisruptFromTalismansWill,
+            'talismansweaponskill' => $Talismansweaponskill, 
+            'ParryFromTalismansWeaponskill' => $ParryFromTalismansWeaponskill,
+            'talismansballisticskill' => $Talismansballisticskill,
+            'talismansarmor' => $Talismansarmor,
         ]);
     }
 }

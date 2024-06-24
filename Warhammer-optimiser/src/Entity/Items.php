@@ -108,6 +108,9 @@ class Items
     #[ORM\Column(nullable: true)]
     private ?int $parry = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $slot = null;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
@@ -499,6 +502,18 @@ class Items
     public function setParry(?int $parry): static
     {
         $this->parry = $parry;
+
+        return $this;
+    }
+
+    public function getSlot(): ?int
+    {
+        return $this->slot;
+    }
+
+    public function setSlot(?int $slot): static
+    {
+        $this->slot = $slot;
 
         return $this;
     }

@@ -33,10 +33,17 @@ class Template
     #[ORM\OneToMany(targetEntity: TemplateRenownAbilitiesListe::class, mappedBy: 'template')]
     private Collection $templateRenownAbilitiesListes;
 
+    /**
+     * @var Collection<int, TemplateTalismansListe>
+     */
+    #[ORM\OneToMany(targetEntity: TemplateTalismansListe::class, mappedBy: 'template')]
+    private Collection $templateTalismansListes;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
         $this->templateRenownAbilitiesListes = new ArrayCollection();
+        $this->templateTalismansListes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,6 +129,36 @@ class Template
             // set the owning side to null (unless already changed)
             if ($templateRenownAbilitiesListe->getTemplate() === $this) {
                 $templateRenownAbilitiesListe->setTemplate(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TemplateTalismansListe>
+     */
+    public function getTemplateTalismansListes(): Collection
+    {
+        return $this->templateTalismansListes;
+    }
+
+    public function addTemplateTalismansListe(TemplateTalismansListe $templateTalismansListe): static
+    {
+        if (!$this->templateTalismansListes->contains($templateTalismansListe)) {
+            $this->templateTalismansListes->add($templateTalismansListe);
+            $templateTalismansListe->setTemplate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemplateTalismansListe(TemplateTalismansListe $templateTalismansListe): static
+    {
+        if ($this->templateTalismansListes->removeElement($templateTalismansListe)) {
+            // set the owning side to null (unless already changed)
+            if ($templateTalismansListe->getTemplate() === $this) {
+                $templateTalismansListe->setTemplate(null);
             }
         }
 
