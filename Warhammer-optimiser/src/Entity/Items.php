@@ -111,6 +111,15 @@ class Items
     #[ORM\Column(nullable: true)]
     private ?int $slot = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $meleepower = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $healpower = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $rangedpower = null;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
@@ -514,6 +523,42 @@ class Items
     public function setSlot(?int $slot): static
     {
         $this->slot = $slot;
+
+        return $this;
+    }
+
+    public function getMeleepower(): ?int
+    {
+        return $this->meleepower;
+    }
+
+    public function setMeleepower(?int $meleepower): static
+    {
+        $this->meleepower = $meleepower;
+
+        return $this;
+    }
+
+    public function getHealpower(): ?int
+    {
+        return $this->healpower;
+    }
+
+    public function setHealpower(?int $healpower): static
+    {
+        $this->healpower = $healpower;
+
+        return $this;
+    }
+
+    public function getRangedpower(): ?int
+    {
+        return $this->rangedpower;
+    }
+
+    public function setRangedpower(?int $rangedpower): static
+    {
+        $this->rangedpower = $rangedpower;
 
         return $this;
     }

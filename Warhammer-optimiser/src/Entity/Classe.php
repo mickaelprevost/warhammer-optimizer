@@ -36,10 +36,17 @@ class Classe
     #[ORM\OneToMany(targetEntity: Template::class, mappedBy: 'class')]
     private Collection $templates;
 
+    /**
+     * @var Collection<int, Sets>
+     */
+    #[ORM\OneToMany(targetEntity: Sets::class, mappedBy: 'classe')]
+    private Collection $sets;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
         $this->templates = new ArrayCollection();
+        $this->sets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -137,6 +144,36 @@ class Classe
             // set the owning side to null (unless already changed)
             if ($template->getClass() === $this) {
                 $template->setClass(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sets>
+     */
+    public function getSets(): Collection
+    {
+        return $this->sets;
+    }
+
+    public function addSet(Sets $set): static
+    {
+        if (!$this->sets->contains($set)) {
+            $this->sets->add($set);
+            $set->setClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSet(Sets $set): static
+    {
+        if ($this->sets->removeElement($set)) {
+            // set the owning side to null (unless already changed)
+            if ($set->getClasse() === $this) {
+                $set->setClasse(null);
             }
         }
 

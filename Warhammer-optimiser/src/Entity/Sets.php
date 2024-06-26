@@ -24,6 +24,9 @@ class Sets
     #[ORM\OneToMany(targetEntity: Items::class, mappedBy: 'sets')]
     private Collection $items;
 
+    #[ORM\ManyToOne(inversedBy: 'sets')]
+    private ?Classe $classe = null;
+
     /**
      * @var Collection<int, Setbonuses>
      */
@@ -79,6 +82,18 @@ class Sets
                 $item->setSets(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): static
+    {
+        $this->classe = $classe;
 
         return $this;
     }

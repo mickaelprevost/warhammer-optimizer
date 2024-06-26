@@ -80,6 +80,15 @@ class Basestats
     #[ORM\Column(nullable: true)]
     private ?int $rangedcritchance = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $meleepower = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $rangedpower = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $healpower = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -345,6 +354,42 @@ class Basestats
     public function setRangedcritchance(?int $rangedcritchance): static
     {
         $this->rangedcritchance = $rangedcritchance;
+
+        return $this;
+    }
+
+    public function getMeleepower(): ?int
+    {
+        return $this->meleepower;
+    }
+
+    public function setMeleepower(?int $meleepower): static
+    {
+        $this->meleepower = $meleepower;
+
+        return $this;
+    }
+
+    public function getRangedpower(): ?int
+    {
+        return $this->rangedpower;
+    }
+
+    public function setRangedpower(?int $rangedpower): static
+    {
+        $this->rangedpower = $rangedpower;
+
+        return $this;
+    }
+
+    public function getHealpower(): ?int
+    {
+        return $this->healpower;
+    }
+
+    public function setHealpower(int $healpower): static
+    {
+        $this->healpower = $healpower;
 
         return $this;
     }
