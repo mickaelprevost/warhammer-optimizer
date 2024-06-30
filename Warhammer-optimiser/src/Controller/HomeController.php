@@ -39,22 +39,76 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/order', name: 'app_order')]
-    public function order(ClasseRepository $classeRepository): Response
+    #[Route('/order/races', name: 'app_order_races')]
+    public function orderRaces(): Response
     {
-        $classes = $classeRepository->findBy(['Faction' => 'order']);
 
-        return $this->render('order.html.twig', [
+        return $this->render('order factions.html.twig');
+    }
+
+    #[Route('/destruction/races', name: 'app_destruction_races')]
+    public function destructionRaces(): Response
+    {
+
+        return $this->render('destruction factions.html.twig');
+    }
+
+    #[Route('/destruction/chaos', name: 'app_destruction_chaos')]
+    public function chaos(ClasseRepository $classeRepository): Response
+    {
+        $classes = $classeRepository->findBy(['Faction' => 'destruction']);
+
+        return $this->render('chaos.html.twig', [
             'classes' => $classes,
         ]);
     }
 
-    #[Route('/destruction', name: 'app_destruction')]
-    public function destruction(ClasseRepository $classeRepository): Response
+    #[Route('/destruction/darkelf', name: 'app_destruction_darkelf')]
+    public function darkelf(ClasseRepository $classeRepository): Response
     {
         $classes = $classeRepository->findBy(['Faction' => 'destruction']);
 
-        return $this->render('destruction.html.twig', [
+        return $this->render('darkelf.html.twig', [
+            'classes' => $classes,
+        ]);
+    }
+
+    #[Route('/destruction/greenskins', name: 'app_destruction_greenskins')]
+    public function greenskins(ClasseRepository $classeRepository): Response
+    {
+        $classes = $classeRepository->findBy(['Faction' => 'destruction']);
+
+        return $this->render('greenskins.html.twig', [
+            'classes' => $classes,
+        ]);
+    }
+
+    #[Route('/order/highelf', name: 'app_order_highelf')]
+    public function highelf(ClasseRepository $classeRepository): Response
+    {
+        $classes = $classeRepository->findBy(['Faction' => 'order']);
+
+        return $this->render('highelf.html.twig', [
+            'classes' => $classes,
+        ]);
+    }
+
+    #[Route('/order/empire', name: 'app_order_empire')]
+    public function empire(ClasseRepository $classeRepository): Response
+    {
+        $classes = $classeRepository->findBy(['Faction' => 'order']);
+
+        return $this->render('empire.html.twig', [
+            'classes' => $classes,
+        ]);
+    }
+
+    #[Route('/order/dwarf', name: 'app_order_dwarf')]
+    public function dwarf(ClasseRepository $classeRepository): Response
+    {
+        $classes = $classeRepository->findBy(['Faction' => 'order']);
+
+        return $this->render('dwarf.html.twig', [
             'classes' => $classes,
         ]);
     }
@@ -213,35 +267,162 @@ class HomeController extends AbstractController
         } */
 
         /* !!!!!!!!!!!!!!!!!!!!!!!!!!! GESTION DES BONUS DE SET !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-        $SetBonusIntel="0";
-        $SetBonusWound="0";
-        $SetBonusStrenght="0";
-        $SetBonusInitiative="0";
-        $SetBonusToughness="0";
-        $SetBonusWillpower="0";
-        $SetBonusBallisticskill="0";
-        $SetBonusWeaponskill="0";
-        $SetBonusMeleecritchance="0";
-        $SetBonusRangedcritchance="0";
-        $SetBonusHealcritchance="0";
-        $SetBonusMagiccritchance="0";
-        $SetBonusReducedDisruptchance="0";
-        $SetBonusMagicpower="0";
-        $SetBonusMeleepower="0";
-        $SetBonusRangedpower="0";
-        $SetBonusHealpower="0";
-        $SetBonusArmor="0";
-        $SetBonusBlock="0";
-        $SetBonusParry="0";
-        $SetBonusDodge="0";
-        $SetBonusDisrupt="0";
-        $SetBonusCriticaldamage="0";
-        $SetBonusDamage="0";
-        $SetBonusReducedchancetobecriticallyhit="0";
-        $SetBonusReducedarmorpenetration="0";
-        $SetBonusArmorpenetration="0";
-        $SetBonusReducedchancetobeparred="0";
-        $SetBonusAutoattackspeed="0";
+            $nehekharanstat = [];
+            $nehekharanintel = '0';
+            $nehekharanwound = '0';
+            $nehekharanstrenght = '0';
+            $nehekharaninitiative= '0';
+            $nehekharantoughness= '0';
+            $nehekharanwillpower = '0';
+            $nehekharanballisticskill = '0';
+            $nehekharanweaponskill = '0';
+            $nehekharanmeleecritchance = '0';
+            $nehekharanrangedcritchance = '0';
+            $nehekharanmagiccritchance = '0';
+            $nehekharanhealcritchance = '0';
+            $nehekharanreduceddisruptchance = '0';
+            $nehekharanmagicpower = '0';
+            $nehekharanmeleepower = '0';
+            $nehekharanrangedpower = '0';
+            $nehekharanhealpower = '0';
+            $nehekharanarmor = '0';
+            $nehekharanblock= '0';
+            $nehekharanparry = '0';
+            $nehekharandodge = '0';
+            $nehekharandisrupt = '0';
+            $nehekharandamage = '0';
+            $nehekharancritdamage = '0';
+            $nehekharanreduccriticallyhitchance = '0';
+            $nehekharanreducarmorpen = '0';
+            $nehekharanarmorpenetration = '0';
+            $nehekharanreducparredchance = '0';
+            $nehekharanautoattackspeed = '0';
+
+            $sovereignstat = [];
+            $sovereignintel = '0';
+            $sovereignwound = '0';
+            $sovereignstrenght = '0';
+            $sovereigninitiative= '0';
+            $sovereigntoughness= '0';
+            $sovereignwillpower = '0';
+            $sovereignballisticskill = '0';
+            $sovereignweaponskill = '0';
+            $sovereignmeleecritchance = '0';
+            $sovereignrangedcritchance = '0';
+            $sovereignmagiccritchance = '0';
+            $sovereignhealcritchance = '0';
+            $sovereignreduceddisruptchance = '0';
+            $sovereignmagicpower = '0';
+            $sovereignmeleepower = '0';
+            $sovereignrangedpower = '0';
+            $sovereignhealpower = '0';
+            $sovereignarmor = '0';
+            $sovereignblock= '0';
+            $sovereignparry = '0';
+            $sovereigndodge = '0';
+            $sovereigndisrupt = '0';
+            $sovereigndamage = '0';
+            $sovereigncritdamage = '0';
+            $sovereignreduccriticallyhitchance = '0';
+            $sovereignreducarmorpen = '0';
+            $sovereignarmorpenetration = '0';
+            $sovereignreducparredchance = '0';
+            $sovereignautoattackspeed = '0';
+
+            $warlordstat = [];
+            $warlordintel = '0';
+            $warlordwound = '0';
+            $warlordstrenght = '0';
+            $warlordinitiative= '0';
+            $warlordtoughness= '0';
+            $warlordwillpower = '0';
+            $warlordballisticskill = '0';
+            $warlordweaponskill = '0';
+            $warlordmeleecritchance = '0';
+            $warlordrangedcritchance = '0';
+            $warlordmagiccritchance = '0';
+            $warlordhealcritchance = '0';
+            $warlordreduceddisruptchance = '0';
+            $warlordmagicpower = '0';
+            $warlordmeleepower = '0';
+            $warlordrangedpower = '0';
+            $warlordhealpower = '0';
+            $warlordarmor = '0';
+            $warlordblock= '0';
+            $warlordparry = '0';
+            $warlorddodge = '0';
+            $warlorddisrupt = '0';
+            $warlorddamage = '0';
+            $warlordcritdamage = '0';
+            $warlordreduccriticallyhitchance = '0';
+            $warlordreducarmorpen = '0';
+            $warlordarmorpenetration = '0';
+            $warlordreducparredchance = '0';
+            $warlordautoattackspeed = '0';
+
+            $genesisstat = [];
+            $genesisintel = '0';
+            $genesiswound = '0';
+            $genesisstrenght = '0';
+            $genesisinitiative= '0';
+            $genesistoughness= '0';
+            $genesiswillpower = '0';
+            $genesisballisticskill = '0';
+            $genesisweaponskill = '0';
+            $genesismeleecritchance = '0';
+            $genesisrangedcritchance = '0';
+            $genesismagiccritchance = '0';
+            $genesishealcritchance = '0';
+            $genesisreduceddisruptchance = '0';
+            $genesismagicpower = '0';
+            $genesismeleepower = '0';
+            $genesisrangedpower = '0';
+            $genesishealpower = '0';
+            $genesisarmor = '0';
+            $genesisblock= '0';
+            $genesisparry = '0';
+            $genesisdodge = '0';
+            $genesisdisrupt = '0';
+            $genesisdamage = '0';
+            $genesiscritdamage = '0';
+            $genesisreduccriticallyhitchance = '0';
+            $genesisreducarmorpen = '0';
+            $genesisarmorpenetration = '0';
+            $genesisreducparredchance = '0';
+            $genesisautoattackspeed = '0';
+
+            
+            $victoriousstat = [];
+            $victoriousintel = '0';
+            $victoriouswound = '0';
+            $victoriousstrenght = '0';
+            $victoriousinitiative= '0';
+            $victorioustoughness= '0';
+            $victoriouswillpower = '0';
+            $victoriousballisticskill = '0';
+            $victoriousweaponskill = '0';
+            $victoriousmeleecritchance = '0';
+            $victoriousrangedcritchance = '0';
+            $victoriousmagiccritchance = '0';
+            $victorioushealcritchance = '0';
+            $victoriousreduceddisruptchance = '0';
+            $victoriousmagicpower = '0';
+            $victoriousmeleepower = '0';
+            $victoriousrangedpower = '0';
+            $victorioushealpower = '0';
+            $victoriousarmor = '0';
+            $victoriousblock= '0';
+            $victoriousparry = '0';
+            $victoriousdodge = '0';
+            $victoriousdisrupt = '0';
+            $victoriousdamage = '0';
+            $victoriouscritdamage = '0';
+            $victoriousreduccriticallyhitchance = '0';
+            $victoriousreducarmorpen = '0';
+            $victoriousarmorpenetration = '0';
+            $victoriousreducparredchance = '0';
+            $victoriousautoattackspeed = '0';
+        
         /* 
         resist    ap/sec   morale  regenpv 
         */
@@ -346,41 +527,10 @@ class HomeController extends AbstractController
                             if (array_key_exists('auto attack speed', $sovereignstat)){
                                 $sovereignautoattackspeed = $sovereignstat['auto attack speed'];
                             }
-                            }
-                    } else {
-                        $sovereignstat = [];
-                        $sovereignintel = '0';
-                        $sovereignwound = '0';
-                        $sovereignstrenght = '0';
-                        $sovereigninitiative= '0';
-                        $sovereigntoughness= '0';
-                        $sovereignwillpower = '0';
-                        $sovereignballisticskill = '0';
-                        $sovereignweaponskill = '0';
-                        $sovereignmeleecritchance = '0';
-                        $sovereignrangedcritchance = '0';
-                        $sovereignmagiccritchance = '0';
-                        $sovereignhealcritchance = '0';
-                        $sovereignreduceddisruptchance = '0';
-                        $sovereignmagicpower = '0';
-                        $sovereignmeleepower = '0';
-                        $sovereignrangedpower = '0';
-                        $sovereignhealpower = '0';
-                        $sovereignarmor = '0';
-                        $sovereignblock= '0';
-                        $sovereignparry = '0';
-                        $sovereigndodge = '0';
-                        $sovereigndisrupt = '0';
-                        $sovereigndamage = '0';
-                        $sovereigncritdamage = '0';
-                        $sovereignreduccriticallyhitchance = '0';
-                        $sovereignreducarmorpen = '0';
-                        $sovereignarmorpenetration = '0';
-                        $sovereignreducparredchance = '0';
-                        $sovereignautoattackspeed = '0';
-                    }
+                        }
+                    } 
                 }
-
+        
                 if ($item->getItems()->getSets()->getName() == 'warlord - ' . $classe){
                     $warlordBonuses = $SetbonusesRepository->findBy(['sets' => $set]);
                     $warlord[] = $item;
@@ -477,38 +627,7 @@ class HomeController extends AbstractController
                             if (array_key_exists('auto attack speed', $warlordstat)){
                                 $warlordautoattackspeed = $warlordstat['auto attack speed'];
                             }
-                            }
-                    } else {
-                        $warlordstat = [];
-                        $warlordintel = '0';
-                        $warlordwound = '0';
-                        $warlordstrenght = '0';
-                        $warlordinitiative= '0';
-                        $warlordtoughness= '0';
-                        $warlordwillpower = '0';
-                        $warlordballisticskill = '0';
-                        $warlordweaponskill = '0';
-                        $warlordmeleecritchance = '0';
-                        $warlordrangedcritchance = '0';
-                        $warlordmagiccritchance = '0';
-                        $warlordhealcritchance = '0';
-                        $warlordreduceddisruptchance = '0';
-                        $warlordmagicpower = '0';
-                        $warlordmeleepower = '0';
-                        $warlordrangedpower = '0';
-                        $warlordhealpower = '0';
-                        $warlordarmor = '0';
-                        $warlordblock= '0';
-                        $warlordparry = '0';
-                        $warlorddodge = '0';
-                        $warlorddisrupt = '0';
-                        $warlorddamage = '0';
-                        $warlordcritdamage = '0';
-                        $warlordreduccriticallyhitchance = '0';
-                        $warlordreducarmorpen = '0';
-                        $warlordarmorpenetration = '0';
-                        $warlordreducparredchance = '0';
-                        $warlordautoattackspeed = '0';
+                        } 
                     } 
                 }
                 if ($item->getItems()->getSets()->getName() == 'genesis - ' . $classe){
@@ -607,41 +726,110 @@ class HomeController extends AbstractController
                             if (array_key_exists('auto attack speed', $genesisstat)){
                                 $genesisautoattackspeed = $genesisstat['auto attack speed'];
                             }
-                            }
-                    } else {
-                        $genesisstat = [];
-                        $genesisintel = '0';
-                        $genesiswound = '0';
-                        $genesisstrenght = '0';
-                        $genesisinitiative= '0';
-                        $genesistoughness= '0';
-                        $genesiswillpower = '0';
-                        $genesisballisticskill = '0';
-                        $genesisweaponskill = '0';
-                        $genesismeleecritchance = '0';
-                        $genesisrangedcritchance = '0';
-                        $genesismagiccritchance = '0';
-                        $genesishealcritchance = '0';
-                        $genesisreduceddisruptchance = '0';
-                        $genesismagicpower = '0';
-                        $genesismeleepower = '0';
-                        $genesisrangedpower = '0';
-                        $genesishealpower = '0';
-                        $genesisarmor = '0';
-                        $genesisblock= '0';
-                        $genesisparry = '0';
-                        $genesisdodge = '0';
-                        $genesisdisrupt = '0';
-                        $genesisdamage = '0';
-                        $genesiscritdamage = '0';
-                        $genesisreduccriticallyhitchance = '0';
-                        $genesisreducarmorpen = '0';
-                        $genesisarmorpenetration = '0';
-                        $genesisreducparredchance = '0';
-                        $genesisautoattackspeed = '0';
-                    }
+                        }
+                    } 
                 }
                 
+                if ($item->getItems()->getSets()->getName() == 'victorious - ' . $classe){
+                    $set = $item->getItems()->getSets();
+                    $victoriousBonuses = $SetbonusesRepository->findBy(['sets' => $set]);
+                    $victorious[] = $item;
+                    $victoriousnumber = count($victorious);
+                    $victoriousactivebonuses = array_slice($victoriousBonuses, 0, $victoriousnumber - 1);
+                    if ($victoriousactivebonuses !== []) {
+                    foreach ($victoriousactivebonuses as $key => $bonuses) {
+                        $key = $bonuses->getType();
+                        $victoriousstat[$key] = $bonuses->getValue();
+                        if (array_key_exists('intel', $victoriousstat)){
+                            $victoriousintel = $victoriousstat['intel'];
+                        } 
+                        if (array_key_exists('wound', $victoriousstat)){
+                            $victoriouswound = $victoriousstat['wound'];
+                        } 
+                        if (array_key_exists('strenght', $victoriousstat)){
+                            $victoriousstrenght = $victoriousstat['strenght'];
+                        } 
+                        if (array_key_exists('initiative', $victoriousstat)){
+                            $victoriousinitiative = $victoriousstat['initiative'];
+                        }
+                        if (array_key_exists('toughness', $victoriousstat)){
+                            $victorioustoughness= $victoriousstat['toughness'];
+                        } 
+                        if (array_key_exists('willpower', $victoriousstat)){
+                            $victoriouswillpower= $victoriousstat['willpower'];
+                        } 
+                        if (array_key_exists('ballistic skill', $victoriousstat)){
+                            $victoriousballisticskill = $victoriousstat['ballistic skill'];
+                        } 
+                        if (array_key_exists('weapon skill', $victoriousstat)){
+                            $victoriousweaponskill= $victoriousstat['weapon skill'];
+                        }
+                        if (array_key_exists('melee crit chance', $victoriousstat)){
+                            $victoriousmeleecritchance = $victoriousstat['melee crit chance'];
+                        } 
+                        if (array_key_exists('ranged crit chance', $victoriousstat)){
+                            $victoriousrangedcritchance = $victoriousstat['ranged crit chance'];
+                        } 
+                        if (array_key_exists('magic crit chance', $victoriousstat)){
+                            $victoriousmagiccritchance = $victoriousstat['magic crit chance'];
+                        } 
+                        if (array_key_exists('heal crit chance', $victoriousstat)){
+                            $victorioushealcritchance = $victoriousstat['heal crit chance'];
+                        } 
+                        if (array_key_exists('reduced disrupt', $victoriousstat)){
+                            $victoriousreduceddisruptchance = $victoriousstat['reduced disrupt'];
+                        } 
+                        if (array_key_exists('magic power', $victoriousstat)){
+                            $victoriousmagicpower= $victoriousstat['magic power'];
+                        } 
+                        if (array_key_exists('melee power', $victoriousstat)){
+                            $victoriousmeleepower= $victoriousstat['melee power'];
+                        } 
+                        if (array_key_exists('ranged power', $victoriousstat)){
+                            $victoriousrangedpower= $victoriousstat['ranged power'];
+                        } 
+                        if (array_key_exists('heal power', $victoriousstat)){
+                            $victorioushealpower= $victoriousstat['heal power'];
+                        } 
+                        if (array_key_exists('armor', $victoriousstat)){
+                            $victoriousarmor = $victoriousstat['armor'];
+                        } 
+                        if (array_key_exists('block', $victoriousstat)){
+                            $victoriousblock = $victoriousstat['block'];
+                        }
+                        if (array_key_exists('parry', $victoriousstat)){
+                            $victoriousparry = $victoriousstat['parry'];
+                        }
+                        if (array_key_exists('dodge', $victoriousstat)){
+                            $victoriousdodge = $victoriousstat['dodge'];
+                        }
+                        if (array_key_exists('disrupt', $victoriousstat)){
+                            $victoriousdisrupt = $victoriousstat['disrupt'];
+                        }
+                        if (array_key_exists('damage', $victoriousstat)){
+                            $victoriousdamage = $victoriousstat['damage'];
+                        }
+                        if (array_key_exists('crit damage', $victoriousstat)){
+                            $victoriouscritdamage = $victoriousstat['crit damage'];
+                        }
+                        if (array_key_exists('reduc critically hit chance', $victoriousstat)){
+                            $victoriousreduccriticallyhitchance = $victoriousstat['reduc critically hit chance'];
+                        }
+                        if (array_key_exists('reduc armor pen', $victoriousstat)){
+                            $victoriousreducarmorpen = $victoriousstat['reduc armor pen'];
+                        }
+                        if (array_key_exists('armor penetration', $victoriousstat)){
+                            $victoriousarmorpenetration = $victoriousstat['armor penetration'];
+                        }
+                        if (array_key_exists('reduc parred chance', $victoriousstat)){
+                            $victoriousreducparredchance = $victoriousstat['reduc parred chance'];
+                        }
+                        if (array_key_exists('auto attack speed', $victoriousstat)){
+                            $victoriousautoattackspeed = $victoriousstat['auto attack speed'];
+                        }
+                    } 
+                } 
+            }
                 if ($item->getItems()->getSets()->getName() == 'nehekharan - ' . $classe){
                     $set = $item->getItems()->getSets();
                     $snehekharanBonuses = $SetbonusesRepository->findBy(['sets' => $set]);
@@ -739,45 +927,14 @@ class HomeController extends AbstractController
                         if (array_key_exists('auto attack speed', $nehekharanstat)){
                             $nehekharanautoattackspeed = $nehekharanstat['auto attack speed'];
                         }
-                        }
-                    } else {
-                        $nehekharanstat = [];
-                        $nehekharanintel = '0';
-                        $nehekharanwound = '0';
-                        $nehekharanstrenght = '0';
-                        $nehekharaninitiative= '0';
-                        $nehekharantoughness= '0';
-                        $nehekharanwillpower = '0';
-                        $nehekharanballisticskill = '0';
-                        $nehekharanweaponskill = '0';
-                        $nehekharanmeleecritchance = '0';
-                        $nehekharanrangedcritchance = '0';
-                        $nehekharanmagiccritchance = '0';
-                        $nehekharanhealcritchance = '0';
-                        $nehekharanreduceddisruptchance = '0';
-                        $nehekharanmagicpower = '0';
-                        $nehekharanmeleepower = '0';
-                        $nehekharanrangedpower = '0';
-                        $nehekharanhealpower = '0';
-                        $nehekharanarmor = '0';
-                        $nehekharanblock= '0';
-                        $nehekharanparry = '0';
-                        $nehekharandodge = '0';
-                        $nehekharandisrupt = '0';
-                        $nehekharandamage = '0';
-                        $nehekharancritdamage = '0';
-                        $nehekharanreduccriticallyhitchance = '0';
-                        $nehekharanreducarmorpen = '0';
-                        $nehekharanarmorpenetration = '0';
-                        $nehekharanreducparredchance = '0';
-                        $nehekharanautoattackspeed = '0';
-                    }
+                        } 
+                    } 
                 }
             }
         } 
         
-        $TotalSetBonusintel = $sovereignintel + $warlordintel + $genesisintel + $nehekharanintel;
-        $TotalSetBonuswound = $sovereignwound + $warlordwound + $genesiswound + $nehekharanwound;
+        $TotalSetBonusintel = $sovereignintel + $warlordintel + $genesisintel + $victoriousintel + $nehekharanintel;
+        $TotalSetBonuswound = $sovereignwound + $warlordwound + $genesiswound + $victoriouswound + $nehekharanwound;
         $TotalSetBonusstrenght = $sovereignstrenght + $warlordstrenght + $genesisstrenght+ $nehekharanstrenght;                      
         $TotalSetBonusinitiative = $sovereigninitiative + $warlordinitiative+ $genesisinitiative + $nehekharaninitiative;
         $TotalSetBonustoughness = $sovereigntoughness + $warlordtoughness + $genesistoughness + $nehekharantoughness;
@@ -971,16 +1128,16 @@ class HomeController extends AbstractController
                     $willpower += $renown->getRenownabilities()->getValue();
                     $DisruptFromRenownWill = $willpower * 0.03;
                 }
-                if ($renown->getRenownabilities()->getType() == ("magiccrit")) {
+                if ($renown->getRenownabilities()->getType() == ("magic crit")) {
                     $magiccrit += $renown->getRenownabilities()->getValue();
                 }
-                if ($renown->getRenownabilities()->getType() == ("meleecrit")) {
+                if ($renown->getRenownabilities()->getType() == ("melee crit")) {
                     $meleecrit += $renown->getRenownabilities()->getValue();
                 }
-                if ($renown->getRenownabilities()->getType() == ("rangedcrit")) {
+                if ($renown->getRenownabilities()->getType() == ("ranged crit")) {
                     $rangedcrit += $renown->getRenownabilities()->getValue();
                 }
-                if ($renown->getRenownabilities()->getType() == ("healcrit")) {
+                if ($renown->getRenownabilities()->getType() == ("heal crit")) {
                     $healcrit += $renown->getRenownabilities()->getValue();
                 }
                 if ($renown->getRenownabilities()->getType() == ("weaponskill")) {

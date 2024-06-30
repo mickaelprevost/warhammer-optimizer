@@ -120,6 +120,15 @@ class Items
     #[ORM\Column(nullable: true)]
     private ?int $rangedpower = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $reduceddisrupt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $autoattackspeed = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $reducedparry = null;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
@@ -559,6 +568,42 @@ class Items
     public function setRangedpower(?int $rangedpower): static
     {
         $this->rangedpower = $rangedpower;
+
+        return $this;
+    }
+
+    public function getReduceddisrupt(): ?int
+    {
+        return $this->reduceddisrupt;
+    }
+
+    public function setReduceddisrupt(?int $reduceddisrupt): static
+    {
+        $this->reduceddisrupt = $reduceddisrupt;
+
+        return $this;
+    }
+
+    public function getAutoattackspeed(): ?int
+    {
+        return $this->autoattackspeed;
+    }
+
+    public function setAutoattackspeed(?int $autoattackspeed): static
+    {
+        $this->autoattackspeed = $autoattackspeed;
+
+        return $this;
+    }
+
+    public function getReducedparry(): ?int
+    {
+        return $this->reducedparry;
+    }
+
+    public function setReducedparry(?int $reducedparry): static
+    {
+        $this->reducedparry = $reducedparry;
 
         return $this;
     }

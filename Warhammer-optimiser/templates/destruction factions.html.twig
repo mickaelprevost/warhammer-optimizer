@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div style="display:flex; justify-content:center; margin-top:3rem; margin-bottom:5rem;width:100%; height:220px;">
+					<img style="width:400px; height:100%;" src="{{ asset('asset/images/logo.jpeg') }}" alt="logo"> 
+				</div>
+     <div class="order-liste" style="width: 100%;
+    height: 400px;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 20px;">
+        <div>
+        <a style="text-decoration:none;" href="{{ path('app_destruction_chaos')}}"> <img style="width: 550px; height: 330px ;border-radius:15px;" src="{{ asset('asset/images/chaos.jpg') }}"></a>
+        </div>
+        <div>
+        <a style="text-decoration:none;" href="{{ path('app_destruction_darkelf')}}"> <img style="width: 550px; height: 330px ;border-radius:15px;" src="{{ asset('asset/images/darkelf.jpg')}}"></a>
+        </div>
+        <div>
+        <a style="text-decoration:none;" href="{{ path('app_destruction_greenskins')}}"> <img style="width: 550px; height: 330px ;border-radius:15px;" src="{{ asset('asset/images/greenskins.jpg')}}"></a>
+        </div>
+    <div>
+{% endblock %}

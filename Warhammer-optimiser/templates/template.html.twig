@@ -6,6 +6,7 @@
         <h2 style="text-align:center;"> Liste of selected items</h2>
         <div style="display:flex; justify-content:center; gap:2rem; margin:2rem 0;">
             {% for item in liste %}
+                
                 {% if item.picture is not same as null %}
                 <img class="gearpics" src="{{asset('asset/images/items/' ~ item.classe.name ~ '/' ~ item.picture)}}">
                 {% endif %}
@@ -17,7 +18,6 @@
         <div>
             <h2 style="margin:0;"> Avatar base stats (level 40)</h2>
             <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
-            {% if templateclass == 'archmage' or 'sorcerer' or 'brightwizard' or 'zealot' or 'runepriest' or 'shaman' or 'magus' %}  
                 <p> armor = {{basestats.armor}}</p>
                 <p> resist = {{basestats.resist}}</p>
                 <p> disrupt = {{disruptfromwillpower|number_format(1, '.', ',')}} %</p>
@@ -35,14 +35,12 @@
                 <p> willpower = {{basestats.willpower}}</p>
                 <p> block = {{basestats.block}} %</p>
                 <p> parry = {{parryfromweaponskill|number_format(1, '.', ',')}} %</p>
-            {% else %}
                 <p> strenght = {{basestats.strenght}}</p>
                 <p> ranged power = {{basestats.rangedpower}}</p>
                 <p> melee power = {{basestats.meleepower}}</p>
                 <p> ballistic skill = {{basestats.ballisticskill}}</p>
                 <p> melee crit chance = {{basestats.meleecritchance}} %</p>
                 <p> ranged crit chance = {{basestats.rangedcritchance}} %</p>
-            {% endif %}
             </div>
         </div>
 
@@ -77,7 +75,6 @@
         <div>
             <h2 style="margin:0;"> Gear stats </h2>
             <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
-                {% if templateclass == 'archmage' or 'sorcerer' or 'brightwizard' or 'zealot' or 'runepriest' or 'shaman' or 'magus' %} 
                 <p> armor = {{armor}}</p>
                 <p> resist = {{resist}}</p>
                 <p> disrupt = {{disrupt|number_format(1, '.', ',')}}</p>
@@ -98,21 +95,18 @@
                 <p> morale/sec= {{morale}}</p>
                 <p> regen pv /4sec = {{regenpv}}</p>
                 <p> lower armor pen = {{reducarmorpen}} %</p>
-                {% else %}
-                 <p> ballistic skill = {{ballisticskill}}</p>
-                 <p> strenght = {{strenght}}</p>
-                 <p> melee crit chance = {{meleecritchance}} %</p>
-                 <p> ranged crit chance = {{rangedcritchance}} %</p>
-                 <p> rangedpower = {{rangedpower}}</p>
-                 <p> meleepower = {{meleepower}}</p>
-                {% endif %}
+                <p> ballistic skill = {{ballisticskill}}</p>
+                <p> strenght = {{strenght}}</p>
+                <p> melee crit chance = {{meleecritchance}} %</p>
+                <p> ranged crit chance = {{rangedcritchance}} %</p>
+                <p> rangedpower = {{rangedpower}}</p>
+                <p> meleepower = {{meleepower}}</p>
             </div>
         </div>
 
         <div>
             <h2 style="margin:0;"> Total stats </h2>
             <div style="padding: 1rem; display:grid; grid-template-columns: 200px 200px 200px 200px; border: 2px solid black; border-radius:10px;">
-                {% if templateclass == 'archmage' or 'sorcerer' or 'brightwizard' or 'zealot' or 'runepriest' or 'shaman' or 'magus' %}
                 <p style="font-weight:bold;"> armor =  {{armor + basestats.armor + talismansarmor + TotalSetBonusArmor}}</p>
                 <p style="font-weight:bold;"> resist = {{resist + basestats.resist}}</p>
                 <p style="font-weight:bold;"> disrupt = {{disrupt|number_format(1, '.', ',') + disruptfromwillpower|number_format(1, '.', ',') + RenownDodgedisrupt|number_format(1, '.', ',') + DisruptfromRenownWill|number_format(1, '.', ',') + DisruptFromTalismansWill|number_format(1, '.', ',') + TotalSetBonusDisrupt}} %</p>
@@ -133,47 +127,18 @@
                 <p style="font-weight:bold;"> morale/sec= {{morale}} </p>
                 <p style="font-weight:bold;"> regen pv /4sec = {{regenpv}}</p>
                 <p style="font-weight:bold;"> lower armor pen = {{reducarmorpen + TotalSetBonusReducedarmorpenetration}} %</p>
+                {% if templateclass == 'archmage' %} 
                 <p style="font-weight:bold;"> dps = {{(intel + basestats.intel + RenownIntel + talismansintel + TotalSetBonusIntel + magicpower + basestats.magicpower + TotalSetBonusMagicpower) / 5}}</p>
-                {% elseif templateclass == 'blackorc' or 'witchelf' or 'choppa' or 'swordmaster' or 'kotbs' or 'whitelion' or 'slayer' or 'ironbreaker' or 'blackguard' or 'marauder' or 'chosen' or 'witchhunter' %}
+                {% endif %}
+                {% if templateclass == "choppa" or "black orc" or "witch hunter" %}
+                <p style="font-weight:bold;"> dps = {{(strenght + basestats.strenght + RenownStrenght + talismansstrenght + TotalSetBonusStrenght + meleepower + basestats.meleepower + TotalSetBonusMeleepower) / 5}}</p>
+                {% endif %}
                 <p style="font-weight:bold;"> melee crit chance = {{meleecritchance + basestats.meleecritchance + RenownMeleecrit + TotalSetBonusMeleecritchance}} %</p>
                 <p style="font-weight:bold;"> melee power = {{meleepower + basestats.meleepower + TotalSetBonusMeleepower}}</p>
-                <p style="font-weight:bold;"> block = {{block|number_format(1, '.', ',') + basestats.block|number_format(1, '.', ',') + RenownBlock + TotalSetBonusBlock}} %</p>
                 <p style="font-weight:bold;"> strenght = {{strenght + basestats.strenght + RenownStrenght + talismansstrenght + TotalSetBonusStrenght}}</p>
-                <p style="font-weight:bold;"> weapon skill = {{weaponskill + basestats.weaponskill + RenownWeaponskill + talismansweaponskill + TotalSetBonusWeaponskill}}</p>
-                <p style="font-weight:bold;"> armor =  {{armor + basestats.armor + talismansarmor + TotalSetBonusArmor}}</p>
-                <p style="font-weight:bold;"> resist = {{resist + basestats.resist}}</p>
-                <p style="font-weight:bold;"> disrupt = {{disrupt|number_format(1, '.', ',') + disruptfromwillpower|number_format(1, '.', ',') + RenownDodgedisrupt|number_format(1, '.', ',') + DisruptfromRenownWill|number_format(1, '.', ',') + DisruptFromTalismansWill|number_format(1, '.', ',') + TotalSetBonusDisrupt}} %</p>
-                <p style="font-weight:bold;"> dodge = {{dodge|number_format(1, '.', ',') + dodgefrominitiative|number_format(1, '.', ',') + RenownDodgedisrupt|number_format(1, '.', ',') + DodgefromRenownIni|number_format(1, '.', ',') + DodgeFromTalismansIni|number_format(1, '.', ',') + TotalSetBonusDodge}} %</p>
-                <p style="font-weight:bold;"> ap/sec = {{ap + basestats.ap}} </p>  
-                <p style="font-weight:bold;"> wound = {{wound + basestats.wound + RenownWound + talismanswound + TotalSetBonusWound}}</p>
-                <p style="font-weight:bold;"> initiative = {{initiative + basestats.initiative + RenownInitiative + talismansinitiative + TotalSetBonusInitiative}}</p>
-                <p style="font-weight:bold;"> toughness = {{toughness + basestats.toughness + RenownToughness + talismanstoughness + TotalSetBonusToughness}}</p>
-                <p style="font-weight:bold;"> parry = {{parry|number_format(1, '.', ',') + parryfromweaponskill|number_format(1, '.', ',') + RenownParry + ParryfromRenownWeaponskill|number_format(1, '.', ',') + ParryFromTalismansWeaponskill|number_format(1, '.', ',') + TotalSetBonusParry}} %</p>
-                <p style="font-weight:bold;"> morale/sec= {{morale}} </p>
-                <p style="font-weight:bold;"> regen pv /4sec = {{regenpv}}</p>
-                <p style="font-weight:bold;"> lower armor pen = {{reducarmorpen + TotalSetBonusReducedarmorpenetration}} %</p>
-                <p style="font-weight:bold;"> dps = {{(strenght + basestats.strenght + RenownStrenght + talismansstrenght + TotalSetBonusStrenght + meleepower + basestats.meleepower + TotalSetBonusMeleepower) / 5}}</p>
-                {% elseif templateclass == 'engineer' or 'shadowwarrior' or 'squig' %}
-                <p style="font-weight:bold;"> weapon skill = {{weaponskill + basestats.weaponskill + RenownWeaponskill + talismansweaponskill + TotalSetBonusWeaponskill}}</p>
                 <p style="font-weight:bold;"> ranged power = {{rangedpower + basestats.rangedpower + TotalSetBonusRangedpower}}</p>
-                <p style="font-weight:bold;"> block = {{block|number_format(1, '.', ',') + basestats.block|number_format(1, '.', ',') + RenownBlock + TotalSetBonusBlock}} %</p>
                 <p style="font-weight:bold;"> ranged crit chance = {{rangedcritchance + basestats.rangedcritchance + RenownRangedcrit + TotalSetBonusRangedcritchance}} %</p>
                 <p style="font-weight:bold;"> ballistic skill = {{ballisticskill + basestats.ballisticskill + RenownBallisticskill + talismansballisticskill + TotalSetBonusBallisticskill}}</p>
-                <p style="font-weight:bold;"> armor =  {{armor + basestats.armor + talismansarmor + TotalSetBonusArmor}}</p>
-                <p style="font-weight:bold;"> resist = {{resist + basestats.resist}}</p>
-                <p style="font-weight:bold;"> disrupt = {{disrupt|number_format(1, '.', ',') + disruptfromwillpower|number_format(1, '.', ',') + RenownDodgedisrupt|number_format(1, '.', ',') + DisruptfromRenownWill|number_format(1, '.', ',') + DisruptFromTalismansWill|number_format(1, '.', ',') + TotalSetBonusDisrupt}} %</p>
-                <p style="font-weight:bold;"> dodge = {{dodge|number_format(1, '.', ',') + dodgefrominitiative|number_format(1, '.', ',') + RenownDodgedisrupt|number_format(1, '.', ',') + DodgefromRenownIni|number_format(1, '.', ',') + DodgeFromTalismansIni|number_format(1, '.', ',') + TotalSetBonusDodge}} %</p>
-                <p style="font-weight:bold;"> ap/sec = {{ap + basestats.ap}} </p>  
-                <p style="font-weight:bold;"> wound = {{wound + basestats.wound + RenownWound + talismanswound + TotalSetBonusWound}}</p>
-                <p style="font-weight:bold;"> initiative = {{initiative + basestats.initiative + RenownInitiative + talismansinitiative + TotalSetBonusInitiative}}</p>
-                <p style="font-weight:bold;"> toughness = {{toughness + basestats.toughness + RenownToughness + talismanstoughness + TotalSetBonusToughness}}</p>
-                <p style="font-weight:bold;"> parry = {{parry|number_format(1, '.', ',') + parryfromweaponskill|number_format(1, '.', ',') + RenownParry + ParryfromRenownWeaponskill|number_format(1, '.', ',') + ParryFromTalismansWeaponskill|number_format(1, '.', ',') + TotalSetBonusParry}} %</p>
-                <p style="font-weight:bold;"> morale/sec= {{morale}} </p>
-                <p style="font-weight:bold;"> regen pv /4sec = {{regenpv}}</p>
-                <p style="font-weight:bold;"> lower armor pen = {{reducarmorpen + TotalSetBonusReducedarmorpenetration}} %</p>
-                <p style="font-weight:bold;"> dps = {{(ballisticskill + basestats.ballisticskill + RenownBallisticskill + talismansballisticskill + TotalSetBonusBallisticskill + rangedpower + basestats.rangedpower + TotalSetBonusRangedpower) / 5}}</p>
-                {% elseif templateclass == 'warriopriest' or 'khainedisciple' %}
-                {% endif %}
             </div>
         </div>
     </div>

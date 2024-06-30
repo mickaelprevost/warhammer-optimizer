@@ -24,3 +24,7 @@ body {
 .faction-select:hover {
     transform: scale(1.2);
 }
+
+.submit-button:hover {
+    cursor:pointer;
+}

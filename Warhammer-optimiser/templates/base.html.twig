@@ -6,9 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Paratagez vos collections d'objets préférées">
 
-		<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
-		<script src="{{ asset('asset/js/stats.js') }}" defer></script>
-
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}" />
+		
 		<title>{% block title %}{% endblock %}War-optimiser</title>
 	</head>
 	
@@ -26,5 +26,10 @@
 			<footer>
 				
 			</footer>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+			<script src="{{ asset('asset/js/stats.js') }}"></script>
+			<script src="{{ asset('asset/js/select2.js') }}"></script>
+			<script src="{{ asset('asset/js/renown.js') }}"></script>
 	</body>
 </html>
