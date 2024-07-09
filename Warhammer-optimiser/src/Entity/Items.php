@@ -129,6 +129,9 @@ class Items
     #[ORM\Column(nullable: true)]
     private ?int $reducedparry = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $reducedcritchance = null;
+
     public function __construct()
     {
         $this->templateListes = new ArrayCollection();
@@ -604,6 +607,18 @@ class Items
     public function setReducedparry(?int $reducedparry): static
     {
         $this->reducedparry = $reducedparry;
+
+        return $this;
+    }
+
+    public function getReducedcritchance(): ?int
+    {
+        return $this->reducedcritchance;
+    }
+
+    public function setReducedcritchance(?int $reducedcritchance): static
+    {
+        $this->reducedcritchance = $reducedcritchance;
 
         return $this;
     }
