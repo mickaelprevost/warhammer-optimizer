@@ -12,7 +12,7 @@
 <p>Connexion / CRUD utilisateur --> 0% </p>
 
 
-<h2 style="text-align:center; margin-top:3rem;">L'application se présente comme ceci </h2>
+<center><h2 style="text-align:center; margin-top:3rem;">L'application se présente comme ceci </h2></center>
 
 <h2 style="margin-top:2rem;"> Sélection du royaume </h2>
 <div style="display:flex; justify-content:center; margin-top: 2rem;"> 
