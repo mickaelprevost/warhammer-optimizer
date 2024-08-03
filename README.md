@@ -2,8 +2,8 @@
 
 <p style="text-align:center;">Bienvenue sur le projet warhammer optimizer, cette application permet aux joueurs du mmo en ligne de créer rapidement des templates pour leurs personnages préférés, afin de comparer les statistiques et pouvoir séléctionner ensuite ingame l'équipement le plus adapté à leur gameplay.</p>
 
-<div style="display:flex; justify-content:center; margin-top: 2rem;"> 
-    <img align="center" src="Warhammer-optimiser/public/asset/images/logo.jpeg" alt=""> 
+<div align="center" style="margin-top: 2rem;"> 
+    <img src="Warhammer-optimiser/public/asset/images/logo.jpeg" alt=""> 
 </div>
 
 <h2 align="center" style="margin-top:3rem;"> Avancement du projet </h2>
