@@ -16,7 +16,7 @@
 
 <h2 style="margin-top:2rem;"> Sélection du royaume </h2>
 <div style="display:flex; justify-content:center; margin-top: 2rem;"> 
-    <img style ="align:center;" src="Warhammer-optimiser/docs preview/realm.png" alt=""> 
+    <img align="center" src="Warhammer-optimiser/docs preview/realm.png" alt=""> 
 </div>
 
 <h2 style="margin-top:2rem;"> Sélection de la faction</h2>
