@@ -15,13 +15,13 @@ const Projects = {
 
     input: function (evt) {  
         Projects.default = (parseInt(evt.target.value))
-        Projects.Total.textContent = (parseInt(Projects.default))
-        if (Projects.total.textContent >= Projects.Max.textContent){
-            Projects.total.style.color = 'black';
-            Projects.total.style.backgroundColor = 'red';
+        Projects.Total.textContent = Projects.default;
+        if (Projects.Total.textContent >= Projects.Max.textContent){
+            Projects.Total.style.color = 'black';
+            Projects.Total.style.backgroundColor = 'red';
         } else {
-            Projects.total.style.color = 'green';
-            Projects.total.style.backgroundColor = 'transparent';
+            Projects.Total.style.color = 'green';
+            Projects.Total.style.backgroundColor = 'transparent';
         }
     },
 }

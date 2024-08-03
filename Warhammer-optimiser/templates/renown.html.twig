@@ -9,7 +9,7 @@
   <form class="form" action="" method="post">
   <div style="display:flex; gap:2rem;">
     <div style="display:flex; align-items:center; gap:1rem;">
-        <select class="js-example-placeholder-multiple js-states form-control" id="renown" style="font-size:20px;width: 400px;height: 400px;" name="items[]" id="" multiple="multiple">
+        <select class="renown js-states form-control" id="renown" style="font-size:20px;width: 400px;height: 400px;" name="items[]" id="" multiple="multiple">
           {% for renown in renownabilities %}
           <option class="cost" value="{{renown.id}}">
               {{ renown.name }}    <p> cost = </p> <p class="value">{{renown.cost}}</p>
