@@ -15,37 +15,37 @@
 <h2 align="center" style="margin-top:3rem;">L'application se présente comme ceci </h2>
 
 <h3 style="margin-top:2rem;"> Sélection du royaume </h3>
-<div align="center" style="display:flex; justify-content:center; margin-top: 2rem;"> 
+<div align="center" style="margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/realm.png" alt=""> 
 </div>
 
 <h3 style="margin-top:2rem;"> Sélection de la faction</h3>
-<div style="display:flex; justify-content:center; margin-top: 2rem;"> 
+<div align="center" style="margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/race.png" alt="">
 </div>
 
 <h3 style="margin-top:2rem;"> Sélection du personnage</h3>
-<div style="display:flex; justify-content:center; margin-top: 2rem;"> 
+<div align="center" style="margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/class.png" alt=""> 
 </div>
 
 <h3 style="margin-top:2rem;"> Sélection de l'équipement pour votre personnage</h3>
-<div style="display:flex; justify-content:center; margin-top: 2rem;"> 
+<div align="center" style="margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/gear.png" alt=""> 
 </div>
 
 <h3 style="margin-top:2rem;"> Sélection des statistiques de renommées</h3>
-<div style="display:flex; justify-content:center; margin-top: 2rem;"> 
+<div align="center" style="margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/renown.png" alt=""> 
 </div>
 
 <h3 style="margin-top:2rem;"> Sélection des talismans</h3>
-<div style="display:flex; justify-content:center; margin-top: 2rem;"> 
+<div align="center" style="margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/talismans.png" alt=""> 
 </div>
 
 <h3 style="margin-top:2rem;"> Aperçu de l'ensemble des statistiques obtenues</h3>
-<div style="display:flex; justify-content:center; margin-top: 2rem;"> 
+<div align="center" style="margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/results.png" alt=""> 
 </div>
 
