@@ -46,7 +46,7 @@
 
 <h3 style="margin-top:2rem;"> Aperçu de l'ensemble des statistiques obtenues</h3>
 
-<p align="center"> Le template affiche en image l'équipement sélectionné afin de s'assurer qu'il n'y a pas eu d'érreurs de sélection, les statistiques de bases du personnage au level 40, les statistiques de renommées, les bonus de set en fonction du nombre de pièces de chaque set sélectionnées, les statistiques octroyées par l'équipement et les talismans incrustés, le total de l'ensemble de toutes les statistiques </p>
+<p align="center"> Le template affiche en image l'équipement sélectionné afin de s'assurer qu'il n'y a pas eu d'érreurs de sélection, les statistiques de bases du personnage au level 40, les statistiques de renommées, les bonus de set en fonction du nombre de pièces de chaque set sélectionnées, les statistiques octroyées par l'équipement et les talismans incrustés, le total de l'ensemble de toutes les statistiques. </p>
 
 <div align="center" style="margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/results.png" alt=""> 
