@@ -15,7 +15,7 @@
 <h2 align="center" style="margin-top:3rem;">L'application se présente comme ceci </h2>
 
 <h3 style="margin-top:2rem;"> Sélection du royaume </h3>
-<div style="display:flex; justify-content:center; margin-top: 2rem;"> 
+<div align="center" style="display:flex; justify-content:center; margin-top: 2rem;"> 
     <img src="Warhammer-optimiser/docs preview/realm.png" alt=""> 
 </div>
 
